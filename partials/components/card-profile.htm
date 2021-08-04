@@ -1,0 +1,34 @@
+
+<!--<div class="card contacts col-sm-4 col-xs-12">-->
+    <!--<div class="card-body">-->
+		<!--<img class="card-img-top" src="{% if avatar %}{{avatar|resize(290, 290, {'mode': 'crop'})}}{% else %}{{'pensoft/profile.png'|media}}{% endif %}" alt="{{fullname}}" />-->
+		<!--<h3 class="card-title">{{fullname}}</h3>-->
+		<!--<div class="info"><i class="pr normal p-location"></i> {{department}}</div>-->
+        <!--<div class="info"><i class="pr normal p-{{country.code}}"></i>{{country.name}}</div>-->
+        <!--<div class="info"><i class="pr normal p-mail"></i><a href="mailto:{{email}}">{{email}}</a></div>-->
+    <!--</div>-->
+<!--</div>-->
+
+
+<div class="card profile card-profile">
+	<img class="card-img-top" src="{% if avatar %}{{avatar}}{% else %}{{'pensoft/profile.png'|media}}{% endif %}" alt="{{fullname}}" />
+	<h3 class="card-header">{{fullname}}</h3>
+	<div class="card-body">
+		{% if department %}
+		<div class="departament"><i class="pr normal p-location"></i> {{department}}</div>
+		{% endif %}
+		{%if country.name %}
+		<div class="country text-bold"><i class="pr normal {{'p-country-'~country.code|lower}}"></i>{{country.name}}</div>
+		{% endif %}
+		{% if position %}
+		<div class="position"><i class="pr normal p-position"></i>{{position}}</div>
+		{% endif %}
+
+		{% if email %}
+		<div class="email"><i class="pr normal p-mail"></i><a href="mailto:{{email}}">{{email}}</a></div>
+		{% endif %}
+		{% if content %}
+		<div class="body">{{content|raw}}</a></div>
+		{% endif %}
+	</div>
+</div>

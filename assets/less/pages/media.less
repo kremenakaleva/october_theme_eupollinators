@@ -1,0 +1,217 @@
+.media-center .flyers{
+  form{
+    text-align: left;
+  }
+}
+
+.media-center-background{
+  background: url('../../assets/images/leaves.jpg') bottom right no-repeat;
+  padding-bottom: 130px;
+}
+
+.media-label{
+  color: @green-color;
+  text-align: center;
+  display: block;
+  width: 100%;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 33px;
+}
+
+.logo-container{
+  display: flex;
+  width: 95%;
+  height: auto;
+  background-color: #efefef!important;
+  border-radius: 4px;
+  border: 1px solid #c1c1c1;
+  &.white{
+    background-color: @dark-grey-color!important;
+  }
+
+  .breakpoint-small-down({
+    width: 100%;
+    height: auto;
+  });
+}
+
+.links a{
+  color: @blue-color!important;
+}
+.links a:hover{
+  color: @blue-color!important;
+  opacity: 0.7;
+}
+
+
+
+.links button{
+  color: @blue-color!important;
+  padding: 10px 0 0 0;
+  margin: 0;
+  border: none;
+  background: none;
+  font-size: 1em;
+}
+.links button:hover{
+  color: @blue-color!important;
+  opacity: 0.7;
+}
+
+.logo-full-pack-container{
+  background-color: #efefef!important;
+  border-radius: 4px;
+  border: 1px solid #c1c1c1;
+  display: table-cell;
+  width: 100%;
+  text-align: center;
+  vertical-align: middle;
+  .breakpoint-small-down({
+    display: block;
+    background-color: transparent!important;
+    border: 1px solid transparent;
+    margin-bottom: 40px;
+  });
+}
+
+.guide-image-container{
+  background: url('../../assets/images/visual_guide.jpg') center no-repeat;
+  background-size: cover;
+  max-width: unset!important;
+  height: 210px;
+  display: table-cell;
+  width: 50%;
+}
+
+.guide-link-container{
+  background-color: #efefef!important;
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+  border: 1px solid #c1c1c1;
+  border-left: none;
+  display: table-cell;
+  width: 50%;
+  max-width: 100%!important;
+  text-align: center;
+  vertical-align: middle;
+
+  .btn-primary{
+    white-space: nowrap;
+  }
+}
+
+ul.flyers{
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  .breakpoint-small-down({
+    flex-direction: column;
+  });
+
+  li{
+    display: inline-flex;
+    flex-direction: column;
+    list-style-type: none;
+    margin-right: 80px;
+    text-align: center;
+    min-width: 315px;
+    width: -webkit-fill-available;
+    .breakpoint-small-down({
+      min-width: unset;
+      max-width: 100%;
+    });
+    .btn{
+      width: fit-content;
+      margin: 20px 0;
+    }
+
+    h1{
+      text-align: left;
+    }
+  }
+}
+
+.flyer_image_container{
+  width: auto;
+  height: auto;
+  text-align: left;
+  img{
+    border: 1px solid #c1c1c1;
+  }
+}
+
+.press-release-container{
+  background-color: #efefef!important;
+  border-radius: 4px;
+  border: 1px solid #c1c1c1;
+  //width: 100%;
+  max-width: 100%;
+  padding: 20px;
+  margin: 20px 0;
+
+  .breakpoint-small-down({
+    width: auto;
+  });
+  .title{
+    color: @green-color;
+    font-weight: 600;
+    margin-bottom: 20px!important;
+  }
+
+  .date{
+    color: @yellow-color;
+    font-weight: 600;
+    font-size: 0.9em;
+  }
+
+  .btn{
+    margin-right: 20px;
+    .breakpoint-small-down({
+      margin-right: 0px;
+    margin-bottom: 20px;
+    });
+  }
+}
+
+.project-presentation-background{
+  background: url('../../assets/images/parrots.jpg') right no-repeat;
+  background-size: 40%;
+  .breakpoint-small-down({
+    background: url(../../assets/images/parrots.jpg) bottom right no-repeat;
+    background-size: contain;
+    padding-bottom: 236px;
+  });
+}
+
+.video-title{
+  color: @green-color;
+  font-weight: 600;
+  font-size: 20px;
+  margin-top: 20px!important;
+  margin-bottom: 20px!important;
+}
+
+.video-container{
+  max-width: 45%!important;
+  margin-right: 5%;
+  .breakpoint-small-down({
+    max-width: 100%!important;
+    margin-right: 0;
+  });
+}
+
+.event_materials{
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  li{
+    margin-bottom: 40px;
+    h2{
+      color: @green-color;
+      font-weight: 600;
+      font-size: 24px;
+    }
+  }
+}

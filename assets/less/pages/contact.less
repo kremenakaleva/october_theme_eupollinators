@@ -1,0 +1,117 @@
+.profile-container{
+  padding: 40px;
+  position: relative;
+  h1{
+    margin-bottom: 0px!important;
+    font-size: 32px !important;
+  }
+  .position{
+    color: @green-color;
+    font-weight: 600;
+    margin-bottom: 0px;
+    font-size: 24px;
+    line-height: 24px;
+    padding-left: 40px;
+    .breakpoint-small-down({
+      padding-left: 0px;
+      margin-top: 40px;
+    });
+  }
+
+  .profile-image.person{
+
+    img{
+      width: 100%;
+      height: auto;
+      max-width: 425px;
+      text-align: center;
+      vertical-align: middle;
+      background: #e7e7e7;
+      border-radius: 50%;
+      position: relative;
+      .breakpoint-small-down({
+        width: 277px;
+        height: 277px;
+      });
+    }
+
+  }
+
+  .profile-image.pensoft{
+    width: 425px;
+    height: 425px;
+    text-align: center;
+    vertical-align: middle;
+    background: #e7e7e7;
+    border-radius: 50%;
+    //position: relative;
+    .breakpoint-small-down({
+      width: 277px;
+      height: 277px;
+    });
+    img{
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+  }
+
+  .contact-mail{
+    //position: absolute;
+    //top: 24%;
+    //right: 12%;
+    background: @dark-grey-color url('../../assets/images/mail.svg') center no-repeat;
+    background-size: 100%;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 1px solid @dark-grey-color;
+    display: block;
+    margin-top: 20px;
+    margin-left: 40px;
+    .breakpoint-small-down({
+      margin-left: 0px;
+    });
+    &:hover{
+      opacity: 0.7;
+
+    }
+  }
+
+  
+  .profile-description{
+    color: #707070;
+    font-size: 18px;
+    margin-top: 20px;
+    padding-left: 40px;
+    .breakpoint-small-down({
+      padding-left: 0px;
+    });
+    .contact-info{
+      min-height: 33px;
+      img{
+        width: 60%;
+      }
+
+      &:nth-of-type(4){
+        i.pr{
+          height: 70px!important;
+        }
+
+      }
+    }
+
+    i.pr{
+      color: @dark-grey-color;
+      font-size: 25px;
+      line-height: 30px;
+      margin-top: 3px;
+      float: left;
+      margin-right: 5px;
+      height: 30px;
+
+    }
+  }
+}

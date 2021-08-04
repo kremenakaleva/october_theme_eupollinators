@@ -1,0 +1,20 @@
+url = "/search"
+layout = "default"
+title = "Search"
+is_hidden = 0
+robot_index = "index"
+robot_follow = "follow"
+header_image = "header/contact.jpg"
+
+[searchResults]
+resultsPerPage = 30
+showProviderBadge = 1
+noResultsMessage = "Your search returned no results."
+visitPageMessage = "Visit page"
+==
+
+<div class="container">
+	<h1 class="display-1">Search results for {{ searchResults.query }}</h1>
+
+	{% component 'searchResults' %}
+</div>

@@ -1,0 +1,191 @@
+url = "/about"
+layout = "default"
+title = "About"
+is_hidden = 0
+meta_description = "about page"
+seo_keywords = "keywords"
+robot_index = "index"
+robot_follow = "follow"
+header_image = "header/about.jpg"
+
+[siteSearchInclude]
+
+[jumbotron find]
+jumbotron = "find"
+title = 1
+templates = "template2"
+description_limit = 0
+
+[jumbotron interoperate]
+jumbotron = "interoperate"
+title = 1
+templates = "template2"
+description_limit = 0
+
+[jumbotron access]
+jumbotron = "access"
+title = 1
+templates = "template2"
+description_limit = 0
+
+[jumbotron reuse]
+jumbotron = "re-use"
+title = 1
+templates = "template2"
+description_limit = 0
+
+[jumbotron researchTools]
+jumbotron = "research-tools"
+title = 1
+templates = "template2"
+description_limit = 0
+
+[jumbotron interlinkedKnowledge]
+jumbotron = "interlinked-knowledge"
+title = 1
+templates = "template2"
+description_limit = 0
+
+[jumbotron texAndDataMiningWorkflows]
+jumbotron = "text-and-data-mining-workflows"
+title = 1
+templates = "template2"
+description_limit = 0
+
+[jumbotron fairDataPlace]
+jumbotron = "fair-data-place"
+title = 1
+templates = "template2"
+description_limit = 0
+
+[jumbotron journalProductionWorkflow]
+jumbotron = "journal-production-workflows"
+title = 1
+templates = "template2"
+description_limit = 0
+
+[jumbotron biodiversityKnowledgeHub]
+jumbotron = "biodiversity-knowledge-hub"
+title = 1
+templates = "template2"
+description_limit = 0
+
+[jumbotron pillar1]
+jumbotron = "networkinc-activties-pillar"
+title = 1
+templates = "template2"
+description_limit = 0
+
+[jumbotron pillar2]
+jumbotron = "trans-national-and-virtual-access-pillar"
+title = 1
+templates = "template2"
+description_limit = 300
+
+[jumbotron pillar3]
+jumbotron = "joint-research-activities-pillar"
+title = 1
+templates = "template2"
+description_limit = 0
+
+[accordion work_packages]
+maxItems = 20
+accordion = 1
+elementId = "Work packages"
+active = 0
+collapsible = "false"
+heightStyle = "fill"
+iconsHeader = "ui-icon-triangle-1-e"
+iconsHeaderActive = "ui-icon-triangle-1-s"
+templates = "template4"
+
+[profile_records pillar_profile1]
+show-category-title = 1
+category = 2
+maxItems = 10
+
+[profile_records pillar_profile2]
+show-category-title = 1
+category = 3
+maxItems = 10
+
+[profile_records pillar_profile3]
+show-category-title = 1
+category = 4
+maxItems = 10
+==
+{% component 'siteSearchInclude' %}
+<div class="container anchors">
+	<a href="#obejectives">Objectives</a>
+	<a href="#products">Products</a>
+	<a href="#project-structure">Project structure</a>
+</div>
+<a name="obejectives" class="anchor">&nbsp;</a>
+<div class="container">
+	<h1 class="display-1">Objectives</h1>
+	<div class="row mt-2">
+		<div class="col-xs-12 col-md-6 find">
+			{% component 'find' %}
+		</div>
+		<div class="col-xs-12 col-md-6 interoperate">
+			{% component 'interoperate' %}
+		</div>
+		<div class="col-xs-12 col-md-6 access">
+			{% component 'access' %}
+		</div>
+		<div class="col-xs-12 col-md-6 reuse">
+			{% component 'reuse' %}
+		</div>
+	</div>
+</div>
+<a name="products" class="anchor">&nbsp;</a>
+<div class="container-fluid about_products_background">
+	<div class="container">
+		<h1 class="display-1">Products</h1>
+		<div class="row mt-2">
+			<div class="col-xs-12 col-md-6 researchTools">
+				{% component 'researchTools' %}
+			</div>
+			<div class="col-xs-12 col-md-6 interlinkedKnowledge">
+				{% component 'interlinkedKnowledge' %}
+			</div>
+			<div class="col-xs-12 col-md-6 texAndDataMiningWorkflows">
+				{% component 'texAndDataMiningWorkflows' %}
+			</div>
+			<div class="col-xs-12 col-md-6 fairDataPlace">
+				{% component 'fairDataPlace' %}
+			</div>			
+			<div class="col-xs-12 col-md-6 journalProductionWorkflow">
+				{% component 'journalProductionWorkflow' %}
+			</div>
+			<div class="col-xs-12 col-md-6 biodiversityKnowledgeHub">
+				{% component 'biodiversityKnowledgeHub' %}
+			</div>
+		</div>
+	</div>
+</div>
+
+<a name="project-structure" class="anchor">&nbsp;</a>
+<div class="container">
+	<h1 class="display-1">Project structure</h1>
+	<div class="row">
+		<div class="col-xs-12 col-md-4 project-structure-networking">
+			{% component 'pillar1' %}
+			<div class="row">{% component 'pillar_profile1' %}</div>
+		</div>
+		<div class="col-xs-12 col-md-4 project-structure-transnational">
+			{% component 'pillar2' %}
+			<div class="row">{% component 'pillar_profile2' %}</div>
+		</div>
+		<div class="col-xs-12 col-md-4 project-structure-jointresearch">
+			{% component 'pillar3' %}
+			<div class="row">{% component 'pillar_profile3' %}</div>
+		</div>
+	</div>
+</div>
+
+<div class="work_packages">
+    <div class="container">
+        {% component 'work_packages' %}
+    </div>
+</div>

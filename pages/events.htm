@@ -1,0 +1,148 @@
+url = "/events/:slug?|[a-zA-Z\-0-9]"
+layout = "default"
+title = "Events"
+is_hidden = 0
+robot_index = "index"
+robot_follow = "follow"
+header_image = "header/events.jpg"
+
+[calendar]
+default = "true"
+limit = 10
+category = "null"
+language = "en"
+
+[calendar calendarOrganized]
+default = "true"
+limit = 10
+category = 1
+language = "en"
+
+[calendar calendarInvolved]
+default = "true"
+limit = 10
+category = 2
+language = "en"
+==
+<?php
+use Pensoft\Calendar\Models\Entry;
+
+function onStart(){
+
+    if($this->param('slug')){
+		$this['entry'] =  Entry::select(
+			'*',
+			'title',
+			'place',
+			'description',
+			'url',
+
+			DB::raw("to_char(\"start\", 'DD') as start_day"),
+			DB::raw("to_char(\"start\", 'YYYY') as start_year"),
+			DB::raw("to_char(\"end\", 'DD') as end_day"),
+			DB::raw("to_char(\"end\", 'YYYY') as end_year"),
+			DB::raw("to_char(\"start\", 'month') as start_month"),
+			DB::raw("to_char(\"end\", 'month') as end_month"),
+			DB::raw("
+				\"end\" is not null as has_end
+			")
+			
+			
+		)->where('slug', $this->param('slug'))->first();
+	}
+    
+    //$slug = (int)$this->param('slug') ? (int)$this->param('slug') : 1;
+	//$this['SelectedLanguage'] = App::getLocale();
+    //$this['slug'] = !(is_numeric($this->param('slug')) || $this->param('slug') == null);
+    
+    $this['slug'] = $this->param('slug');
+}
+?>
+==
+<div class="container">
+{% if not slug %}
+	<div class="tabs">
+		<a class="btn btn-primary" href="#all">All events</a>
+		<a class="btn btn-primary" href="#organised">{{this.theme.site_name}} organised</a>
+		<a class="btn btn-primary" href="#involved">{{this.theme.site_name}} involved</a>
+	</div>
+	<!--tabs content	-->
+
+	<div class="row" id="all">
+    	{% component 'calendar' %}
+	</div>
+
+	<div class="row" id="organised">
+    	{% component 'calendarOrganized' %}
+	</div>
+
+	<div class="row" id="involved">
+    	{% component 'calendarInvolved' %}
+	</div>
+{% else %}
+
+    {% if entry %}
+	<div class="row newslist single-news-item">
+		{% set materials = entry.materials %}
+		{% if entry.cover_image or materials %}
+		<div class="col-xs-12 col-md-5">
+			{% if entry.cover_image %}
+			<img class="content left" src="{{entry.cover_image|crop_image|resize(673, 411, {'mode':'crop'})}}" alt="{{entry.cover_image.title}}">
+			{% endif %}
+
+			{% if materials %}
+			<ul class="event_materials">
+				<h1 class="display-1">Materials</h1>
+				{% for item in materials %}
+					{% set url = item.button_file ? item.button_file|media : item.button_url %}
+					<li>
+						<h2>{{ item.title }}</h2>
+						<a class="btn btn-primary" href="{{ url }}" target="_blank">{{ item.button_title }}</a>
+					</li>
+				{% endfor %}
+			</ul>
+			{% endif %}
+
+		</div>
+
+		<div class="col-xs-12 col-md-7">
+		{% else %}
+			<div class="col-xs-12 col-md-12">
+		{% endif %}
+
+			<div class="news-title">
+				<h1 class="single-new-title">{{ entry.title }}</h1>
+
+			</div>
+			{% if entry.event_date %}
+			<div class="event-date">
+				<i class="pr p-time"></i> {{entry.event_date}}
+				{{entry.event_time}}
+			</div>
+			{% endif %}
+
+			{% if entry.place %}
+			<div class="event-place"><i class="pr p-location"></i> {{ entry.place }}</div>
+			{% endif %}
+
+			<div class="content mt-2">
+				{{ entry.description|raw }}
+			</div>
+		</div>
+	</div>
+    
+    {% else %}
+    {% endif %}
+
+{% endif %}
+
+</div>
+<script>
+	var documentHasScroll = function() {
+		return window.innerHeight <= document.body.offsetHeight;
+	};
+	function ready() {
+		keepFooter(documentHasScroll());
+	}
+	document.addEventListener("DOMContentLoaded", ready);
+</script>

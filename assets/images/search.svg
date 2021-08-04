@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 24.3.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" [
+	<!ENTITY ns_extend "http://ns.adobe.com/Extensibility/1.0/">
+	<!ENTITY ns_ai "http://ns.adobe.com/AdobeIllustrator/10.0/">
+	<!ENTITY ns_graphs "http://ns.adobe.com/Graphs/1.0/">
+	<!ENTITY ns_vars "http://ns.adobe.com/Variables/1.0/">
+	<!ENTITY ns_imrep "http://ns.adobe.com/ImageReplacement/1.0/">
+	<!ENTITY ns_sfw "http://ns.adobe.com/SaveForWeb/1.0/">
+	<!ENTITY ns_custom "http://ns.adobe.com/GenericCustomNamespace/1.0/">
+	<!ENTITY ns_adobe_xpath "http://ns.adobe.com/XPath/1.0/">
+]>
+<svg version="1.1" id="Layer_1" xmlns:x="&ns_extend;" xmlns:i="&ns_ai;" xmlns:graph="&ns_graphs;"
+	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 38.6 38.2"
+	 style="enable-background:new 0 0 38.6 38.2;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#66913D;}
+	.st1{fill:none;stroke:#66913D;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;}
+	.st2{fill:none;}
+	.st3{fill:#FFFFFF;}
+	.st4{fill:#2F2F2F;}
+	.st5{fill:#707070;}
+</style>
+<metadata>
+	<sfw  xmlns="&ns_sfw;">
+		<slices></slices>
+		<sliceSourceBounds  bottomLeftOrigin="true" height="455.9" width="404.2" x="0.6" y="-456.3"></sliceSourceBounds>
+	</sfw>
+</metadata>
+<g id="Group_294" transform="translate(-1559.17 734.684) rotate(-45)">
+	<g id="Ellipse_2666" transform="translate(1606 599)">
+		<ellipse class="st2" cx="16" cy="6.7" rx="15.6" ry="15.6"/>
+		<path class="st3" d="M5,17.7c-2.8-2.8-4.6-6.7-4.6-11C0.4,2.6,2-1.4,5-4.3s6.9-4.6,11-4.6l0,0c8.6,0,15.6,7,15.6,15.6
+			c0,4.2-1.6,8.1-4.6,11s-6.9,4.6-11,4.6C11.7,22.3,7.8,20.6,5,17.7z M16-6.9c-3.6,0-7.1,1.4-9.6,4s-4,6-4,9.6
+			c0,7.5,6.1,13.6,13.6,13.6c3.6,0,7.1-1.4,9.6-4s4-6,4-9.6C29.6-0.8,23.5-6.9,16-6.9L16-6.9z"/>
+	</g>
+	<path class="st3" d="M1621.8,636.1c-0.2-0.2-0.3-0.4-0.3-0.7l-0.5-15.1c0-0.5,0.4-1,0.9-1c0.5,0,1,0.4,1,0.9l0.5,15.1
+		c0,0.5-0.4,1-0.9,1C1622.2,636.4,1622,636.3,1621.8,636.1z"/>
+</g>
+</svg>

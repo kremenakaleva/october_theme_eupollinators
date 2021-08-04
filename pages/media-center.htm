@@ -1,0 +1,380 @@
+title = "Media center"
+url = "/media-center"
+layout = "default"
+is_hidden = 0
+robot_index = "index"
+robot_follow = "follow"
+header_image = "header/media-center.jpg"
+==
+<?php
+use Pensoft\Media\Models\MediaLogos;
+use Pensoft\Media\Models\Flyers;
+use Pensoft\Media\Models\Newsletters;
+use Pensoft\Media\Models\Presentations;
+use Pensoft\Media\Models\Pressreleases;
+use Pensoft\Media\Models\Videos;
+use System\Models\File;
+
+function onStart(){
+	$this['logos'] =  MediaLogos::get();
+	$this['flyers'] =  Flyers::get();
+	$this['newsletters'] =  Newsletters::get();
+	$this['presentations'] =  Presentations::get();
+	$this['pressreleases'] =  Pressreleases::get();
+	$this['videos'] =  Videos::get();
+
+
+
+}
+
+
+function onDownloadGuide(){
+	$pathToFile = base_path('storage/app/media/Visual Identity Guide_2021.pdf');
+	$fileName = "Visual_Identity_Guide_2021.pdf";
+	$headers = [
+		'HTTP/1.1 200 OK',
+		'Pragma: public',
+		'Content-Type: application/pdf'
+	];
+	return Response::download($pathToFile, $fileName, $headers);
+}
+
+function onDownloadArchive(){
+	$pathToFile = base_path('storage/app/media/BiCIKL_logo_full_pack.rar');
+	$fileName = "BiCIKL_logo_full_pack.rar";
+
+	return Response::download($pathToFile, $fileName);
+}
+
+
+function onDownloadFile(){
+	$file = File::find(post('id'));
+	$pathToFile = $file->getLocalPath();
+	$fileName = $file->file_name;
+	$fileType = $file->content_type;
+	$headers = [
+		'HTTP/1.1 200 OK',
+		'Pragma: public',
+		'Content-Type: '.$fileType,
+		'Content-Type: application/force-download'
+	];
+
+	return Response::download($pathToFile, $fileName, $headers);
+}
+
+
+?>
+==
+<div class="container-fluid media-center-background">
+	<div class="container tabs">
+    <div class="row start-sm center-xs">
+		{% if pressreleases.count() %}
+		<div class="col-sm-2 col-xs-10 mt-md-0 mt-1">
+			<div class="card-container">
+				<a href="#PressReleases" title="Press releases">
+					<span class="card_image_container" style="background: url({{'media/press_releases.svg'|media}}) center center no-repeat;" href="{{url('media-center')}}/press-releases" title="Press releases"></span>
+					<span class="media-label">Press releases</span>
+				</a>
+			</div>
+		</div>
+		{% endif %}
+
+
+		{% if flyers.count() %}
+        <div class="col-sm-2 col-xs-10 mt-md-0 mt-1">
+			<div class="card-container">
+				<a href="#PromotionalMaterials" title="Promotional materials">
+					<span class="card_image_container" style="background: url({{'media/promotional_materials.svg'|media}}) center center no-repeat;" href="{{url('media-center')}}/flyer" title="Promotional materials"></span>
+					<span class="media-label">Promotional materials</span>
+				</a>
+			</div>
+        </div>
+		{% endif %}
+		{% if newsletters.count() %}
+		<div class="col-sm-2 col-xs-10 mt-md-0 mt-1">
+			<div class="card-container">
+				<a href="#Newsletter" title="Newsletters">
+					<span class="card_image_container" style="background: url({{'pensoft/Newsletters.svg'|media}}) center center no-repeat;" href="{{url('media-center')}}/newsletters" title="Newsletters"></span>
+					<span class="media-label">Newsletters</span>
+				</a>
+			</div>
+		</div>
+		{% endif %}
+
+		{% if presentations.count() %}
+		<div class="col-sm-2 col-xs-10 mt-md-0 mt-1">
+			<div class="card-container">
+				<a href="#Presentation" title="Presentation">
+					<span class="card_image_container" style="background: url({{'media/project_presentation.svg'|media}}) center center no-repeat;" href="{{url('media-center')}}/presentation" title="Presentation"></span>
+					<span class="media-label">Project presentation</span>
+				</a>
+			</div>
+		</div>
+		{% endif %}
+
+		{% if videos.count() %}
+		<div class="col-sm-2 col-xs-10 mt-md-0 mt-1">
+			<div class="card-container">
+				<a href="#Videos" title="Videos">
+					<span class="card_image_container" style="background: url({{'media/videos.svg'|media}}) center center no-repeat;" href="{{url('media-center')}}/videos" title="Videos"></span>
+					<span class="media-label">Videos</span>
+				</a>
+			</div>
+		</div>
+		{% endif %}
+
+		{% if logos.count() %}
+		<div class="col-sm-2 col-xs-10  mt-md-0 mt-1">
+			<div class="card-container">
+				<a href="#Logos" title="Logo">
+					<span class="card_image_container" style="background: url({{'media/logo_and_branding.svg'|media}}) center center no-repeat;" href="{{url('media-center')}}/logo" title="Logo"></span>
+					<span class="media-label">Logo and branding</span>
+				</a>
+			</div>
+		</div>
+		{% endif %}
+
+    </div>
+
+	<!--tabs content	-->
+	{% if pressreleases.count() %}
+	<div class="row" id="PressReleases">
+		<div class="container">
+			<h1 class="display-1">Presss releases</h1>
+			<div class="row">
+
+				{% for record in pressreleases %}
+				{% spaceless %}
+				<div class="col-xs-12">
+					<div class="press-release-container">
+						<div class="title">{{record.name}}</div>
+						<div class="date">{{record.date |date('F Y')}}</div>
+						<div class="body">{{record.description | raw}}</div>
+						<div class="row link mt-1">
+							{% if record.link %}
+							<a href="{{record.link}}" target="_blank" class="btn btn-primary">EurekAlert!</a>
+							{% endif %}
+							{% if record.link_cordis %}
+							<a href="{{record.link_cordis}}" target="_blank" class="btn btn-primary">CORDIS Wire</a>
+							{% endif %}
+						</div>
+					</div>
+				</div>
+
+
+				{% endspaceless %}
+				{% else %}
+				{{ noRecordsMessage }}
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+	{% endif %}
+
+
+	{% if flyers.count() %}
+	<div class="row" id="PromotionalMaterials">
+		<div class="container">
+
+			<ul class="flyers">
+
+				{% for record in flyers %}
+				{# Use spaceless tag to remove spaces inside the A tag. #}
+				{% spaceless %}
+				{% if record.flyer_image %}
+				<li>
+					<h1 class="display-1">{{record.name}}</h1>
+					<div class="flyer_image_container" title="{{record.name}}">
+						<img src="{{record.flyer_image.thumb(auto,448,{'mode':'crop'})}}">
+					</div>
+					{{form_open({ request: 'onDownloadFile' }) }}
+						<input type="hidden" value="{{record.file.id}}" name="id">
+						<button type="submit" class="btn btn-primary" data-attach-loading>Download</button>
+					{{ form_close() }}
+
+				</li>
+
+
+				{% endif %}
+
+				{% endspaceless %}
+				{% else %}
+				{{ noRecordsMessage }}
+				{% endfor %}
+			</ul>
+		</div>
+
+	</div>
+	{%endif%}
+
+
+	{% if presentations.count() %}
+	<div class="row" id="Presentation">
+
+		<div class="container">
+			<h1 class="display-1">Project presentation</h1>
+			<div class="row">
+
+				{% for record in presentations %}
+				{% spaceless %}
+				{% if record.presentation_image %}
+				<div class="col-xs-12 col-lg-6 center-xs">
+					<div class="story broshure_and_poster">
+						<p align="center"><a href="{{record.file.path}}" target="_blank"><img src="{{record.presentation_image.thumb(812,454,{'mode':'crop'})}}" title="{{record.name}}"> </a></p>
+					</div>
+					{% if record.file %}
+
+						{{form_open({ request: 'onDownloadFile' }) }}
+							<input type="hidden" value="{{record.file.id}}" name="id">
+							<button type="submit" class="btn btn-primary" data-attach-loading>Download</button>
+						{{ form_close() }}
+
+					{% endif %}
+				</div>
+				{% endif %}
+
+				{% endspaceless %}
+				{% else %}
+				{{ noRecordsMessage }}
+				{% endfor %}
+			</div>
+		</div>
+
+
+	</div>
+	{% endif %}
+
+
+
+	{% if videos.count() %}
+	<div class="row" id="Videos">
+
+		<div class="container">
+			<h1 class="display-1">Videos</h1>
+			<div class="row">
+
+				{% for record in videos %}
+				{% spaceless %}
+				<div class="col-md-6 col-xs-12 video-container">
+
+					{% if record.file %}
+					<video controls="" width="100%"><source src="{{record.file.path}}" type="video/mp4"></video>
+					<p class="video-title">{{record.name}}</p>
+					<p>Attachment: {{record.file.file_name}}, {{record.file.size}}</p>
+
+					<p align="center">
+						{{form_open({ request: 'onDownloadFile' }) }}
+							<input type="hidden" value="{{record.file.id}}" name="id">
+							<button type="submit" class="btn btn-primary" data-attach-loading>Download</button>
+						{{ form_close() }}
+					</p>
+
+					{% endif %}
+
+					{% if record.youtube_url %}
+					<iframe allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" frameborder="0" src="{{record.youtube_url}}" width="100%" height="448"></iframe>
+					<p class="video-title">{{record.name}}</p>
+					<p>&nbsp;</p>
+					{% endif %}
+
+					{% if record.vimeo_url %}
+					<iframe width="100%" height="448" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+							src="{{record.vimeo_url}}">
+					</iframe>
+					<p class="video-title">{{record.name}}</p>
+					<p>&nbsp;</p>
+					{% endif %}
+				</div>
+
+
+
+
+				{% endspaceless %}
+				{% else %}
+				{{ noRecordsMessage }}
+				{% endfor %}
+				<script>
+					initAccordeon('accordion-documents');
+				</script>
+			</div>
+		</div>
+
+	</div>
+	{% endif %}
+
+
+
+		{% if logos.count() %}
+		<div class="row" id="Logos">
+		<div class="container">
+			<h1 class="display-1">Logo</h1>
+			<div class="row top-xs" style="display: table; margin-bottom: 80px;">
+				<div class="col-md-8 col-xs-12" style="max-width: unset;">
+					<div class="row top-xs">
+
+
+						{% for record in logos %}
+						{% spaceless %}
+						{% if record.logo_image %}
+
+						<div class="col-md-3 col-xs-12 mb-2">
+							<div class="logo-container {{record.name}}">
+								<img src="{{record.logo_image.path}}" title="{{record.name}}" style="max-width: 100%;">
+							</div>
+							<div class="links" style="white-space: pre-wrap;">
+								{% if record.file_jpg %}
+									{{form_open({ request: 'onDownloadFile' }) }}
+										<input type="hidden" value="{{record.file_jpg.id}}" name="id">
+										<button type="submit" data-attach-loading>Download jpg</button>
+									{{ form_close() }}
+								{% endif %}
+
+								{% if record.file_png %}
+									{{form_open({ request: 'onDownloadFile' }) }}
+										<input type="hidden" value="{{record.file_png.id}}" name="id">
+										<button type="submit" data-attach-loading>Download png</button>
+									{{ form_close() }}
+								{% endif %}
+
+								{% if record.file_eps %}
+									{{form_open({ request: 'onDownloadFile' }) }}
+										<input type="hidden" value="{{record.file_eps.id}}" name="id">
+										<button type="submit" data-attach-loading>Download svg</button>
+									{{ form_close() }}
+								{% endif %}
+							</div>
+						</div>
+						{% endif %}
+
+						{% endspaceless %}
+						{% else %}
+						{{ noRecordsMessage }}
+						{% endfor %}
+					</div>
+				</div>
+				<div class="col-md-4 col-xs-12 logo-full-pack-container">
+					{{form_open({ request: 'onDownloadArchive' }) }}
+					<button type="submit" class="btn btn-primary" data-attach-loading>Download full pack</button>
+					{{ form_close() }}
+				</div>
+			</div>
+			<h1 class="display-1">Visual identity guide</h1>
+			<div class="row guide-container" style="display: table; width: 100%;">
+				<div class="col-xs-6 guide-image-container" style="max-width: unset;"></div>
+				<div class="col-xs-6 guide-link-container" style="max-width: unset;">
+
+					{{form_open({ request: 'onDownloadGuide' }) }}
+						<button type="submit" class="btn btn-primary" data-attach-loading>Download guide</button>
+					{{ form_close() }}
+
+				</div>
+			</div>
+
+		</div>
+
+	</div>
+		{% endif %}
+
+		<!-- end  content	-->
+</div>
+</div>

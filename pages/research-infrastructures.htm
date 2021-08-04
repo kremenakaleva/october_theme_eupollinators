@@ -1,0 +1,139 @@
+url = "/research-infrastructures"
+layout = "default"
+title = "Research infrastructures"
+header_image = "header/research-infrastructures.jpg"
+
+[jumbotron]
+jumbotron = "research-infrastructures"
+templates = "template2"
+description_limit = 0
+
+[jumbotron transnationalAccess]
+jumbotron = "transnational-access"
+title = 1
+templates = "template2"
+description_limit = 0
+
+[jumbotron virtualAccess]
+jumbotron = "virtual-access"
+title = 1
+templates = "template2"
+description_limit = 0
+
+[jumbotron supportingRI]
+jumbotron = "supporting-research-infrastructures"
+title = 1
+templates = "template2"
+description_limit = 0
+==
+<?php
+use Pensoft\Partners\Models\Partners;
+
+function onStart(){
+	$this['transnational'] =  Partners::where('type', 2)->get();
+	$this['virtual'] =  Partners::where('type', 3)->get();
+	$this['supporting'] =  Partners::where('type', 4)->get();
+}
+?>
+==
+<div class="container">
+{% component 'jumbotron' %}
+</div>
+
+<div class="container anchors">
+	<a href="#transnational-access">Transnational access</a>
+	<a href="#virtual-access">Virtual access</a>
+	<a href="#supportingRI">Supporting Research Infrastructures</a>
+</div>
+
+<div class="container ri1" id="accordion-ri">
+	<a name="transnational-access" class="anchor">&nbsp;</a>
+	{% component 'transnationalAccess' %}
+
+
+	<div class="row mt-2">
+		{% for keyT, itemT in transnational %}
+		<div class="col-xs-12 col-md-12 ri-item key_{{keyT}}">
+			<div class="row top-xs start-md center-xs">
+				<div class="col-md-3 col-xs-12 logo-container"><a href="{{itemT.instituion_url}}" target="_blank"><img src="{{itemT.cover.getThumb(120, auto, {'mode': 'crop'})}}"></a></div>
+				<div class="col-md-9 col-xs-12 start-xs">
+					<h4><a href="{{itemT.instituion_url}}" target="_blank">{{itemT.instituion}}</a></h4>
+					<div class="info">{{itemT.content|raw}}</div>
+					{% if itemT.add_description %}
+					<div class="accordion-border"><!-- 1 --><!-- css 1 -->
+						<div class="row middle-xs accordion-toggle"><span class="read-more">read more</span></div>
+
+						<div class="accordion-content" style="display: none;">
+							<div class="info">{{itemT.add_description|raw}}</div>
+						</div>
+					</div>
+					{% endif %}
+
+				</div>
+			</div>
+		</div>
+		{% endfor %}
+
+	</div>
+
+</div>
+
+<div class="container ri2" id="accordion-ri">
+	<a name="virtual-access" class="anchor">&nbsp;</a>
+	{% component 'virtualAccess' %}
+	<div class="row mt-2">
+		{% for keyV, itemV in virtual %}
+		<div class="col-xs-12 col-md-12 ri-item key_{{keyV}}">
+			<div class="row top-xs start-md center-xs">
+				<div class="col-md-3 col-xs-12 logo-container"><a href="{{itemV.instituion_url}}" target="_blank"><img src="{{itemV.cover.getThumb(120, auto, {'mode': 'crop'})}}"></a></div>
+				<div class="col-md-9 col-xs-12 start-xs">
+					<h4><a href="{{itemV.instituion_url}}" target="_blank">{{itemV.instituion}}</a></h4>
+					<div class="info">{{itemV.content|raw}}</div>
+					{% if itemV.add_description %}
+					<div class="accordion-border"><!-- 1 --><!-- css 1 -->
+						<div class="row middle-xs accordion-toggle"><span class="read-more">read more</span></div>
+
+						<div class="accordion-content" style="display: none;">
+							<div class="info">{{itemV.add_description|raw}}</div>
+						</div>
+					</div>
+					{% endif %}
+				</div>
+			</div>
+		</div>
+		{% endfor %}
+
+	</div>
+</div>
+
+<div class="container ri3" id="accordion-ri">
+	<a name="supportingRI" class="anchor">&nbsp;</a>
+	{% component 'supportingRI' %}
+	<div class="row mt-2">
+		{% for keyS, itemS in supporting %}
+		<div class="col-xs-12 col-md-12 ri-item key_{{keyS}}">
+			<div class="row top-xs start-md center-xs">
+				<div class="col-md-3 col-xs-12 logo-container"><a href="{{itemS.instituion_url}}" target="_blank"><img src="{{itemS.cover.getThumb(120, auto, {'mode': 'crop'})}}"></a></div>
+				<div class="col-md-9 col-xs-12 start-xs">
+					<h4><a href="{{itemS.instituion_url}}" target="_blank">{{itemS.instituion}}</a></h4>
+					<div class="info">{{itemS.content|raw}}</div>
+					{% if itemS.add_description %}
+					<div class="accordion-border"><!-- 1 --><!-- css 1 -->
+						<div class="row middle-xs accordion-toggle"><span class="read-more">read more</span></div>
+
+						<div class="accordion-content" style="display: none;">
+							<div class="info">{{itemS.add_description|raw}}</div>
+						</div>
+					</div>
+					{% endif %}
+				</div>
+			</div>
+		</div>
+		{% endfor %}
+
+	</div>
+</div>
+
+<script>
+	initAccordeon('accordion-ri');
+</script>
