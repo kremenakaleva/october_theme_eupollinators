@@ -1,1 +1,1 @@
-# october_theme_showcase
+# october_theme_eupollinators
