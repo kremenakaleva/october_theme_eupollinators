@@ -3,11 +3,11 @@
 @timeline-secondary-color: @secondary-color;
 @timeline-bg-message-box: @transparent;
 @timeline-border-weight: @border-line-width;
-@timeline-border-color: #707070;
+@timeline-border-color: #003D70;
 
 @timeline-cycle-border-width: @timeline-border-weight * 3;
 @timeline-body-padding: @padding-base-space * 3;
-@timeline-item-padding-y: @cycle-width + 20;
+@timeline-item-padding-y: @cycle-width;
 @timeline-item-padding-x: (@cycle-width / 2 + @timeline-cycle-border-width + @timeline-border-weight + 10);
 
 .timeline {
@@ -24,8 +24,7 @@
             height: 300px;
             justify-content: space-between;
             align-items: baseline;
-          //margin-left: -2rem;
-
+    
             &::after {
                 width: 100%;
                 height: @timeline-border-weight;
@@ -33,17 +32,15 @@
                 left: 0;
                 right: 0;
             }
-
+    
             .timeline-item:nth-child(even){
                 left: 0;
                 &::after {
-                    //left: calc(~'50% - @{cycle-width} + @{timeline-cycle-border-width} * 2');
-                  left: 0;
+                    left: calc(~'50% - @{cycle-width} + @{timeline-cycle-border-width} * 2');
                 }
-
+    
                 .timeline-header{
-                    //left: auto;
-                    left: 8px;
+                    left: auto;
                     right: 0;
                 }
             }
@@ -51,38 +48,25 @@
                 width: 100%;
                 height: 100%;
                 text-align: center;
-
+                
                 .timeline-header {
-                    display: flex;
-                    align-items: flex-start;
-                    justify-content: left;
-                    width: 100%;
-                    top: 55px;
-                    height: calc(~'50% - 55px');
-                    left: 8px;
-                    //padding: @timeline-body-padding;
-                    padding: 0;
-                    box-sizing: border-box;
-                    margin: auto;
-                    text-align: center;
-                    word-break: break-all;
-                    border-left: 1px solid @date-text-color;
 
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  width: 100%;
+                  top: 0;
+                  height: 50%;
+                  left: 0;
+                  padding: @timeline-body-padding;
+                  box-sizing: border-box;
+                  margin: auto;
+                  text-align: center;
+                  word-break: break-all;
+                  flex-direction: column;
 
-
-                    span{
-                      background: @date-text-color;
-                      padding: 10px 20px;
-                      color: @white-color;
-                      position: absolute;
-                      border-bottom-right-radius: 30px;
-                      border-top-right-radius: 30px;
-                      font-weight: 600;
-                      width: 80%;
-                      text-align: center;
-                    }
                 }
-
+                
                 .timeline-body {
                     display: flex;
                     align-items: flex-start;
@@ -93,18 +77,15 @@
                     bottom: 0;
                     left: 0;
                     word-break: unset;
-                    font-weight: 600;
-                    line-height: 1.2em;
-                  font-size: 21px;
+                    .rounded();
                 }
-
+                
                 &::after {
                     top: calc(~'50% - @{cycle-width} + @{timeline-cycle-border-width} * 2');
-                    //left: calc(~'50% - @{cycle-width} + @{timeline-cycle-border-width} * 2');
-                  left: 0;
+                    left: calc(~'50% - @{cycle-width} + @{timeline-cycle-border-width} * 2');
                 }
             }
-
+            
         }
     });
 
@@ -116,17 +97,7 @@
         bottom: 0;
         left: 50%;
         margin-left: -@timeline-border-weight / 2;
-        background-image: linear-gradient(to right, @timeline-border-color 33%, rgba(255,255,255,0) 0%);
-        background-position: bottom;
-        background-size: 5px 1px;
-        background-repeat: repeat-x;
-        .breakpoint-small-down({
-          background-image: linear-gradient(@timeline-border-color 33%, rgba(255,255,255,0) 0%);
-          background-position: right;
-          background-size: 1px 5px;
-          background-repeat: repeat-y;
-        });
-
+        background-color: @timeline-border-color;
     }
 
     .timeline-item:nth-child(even){
@@ -134,7 +105,7 @@
         //text-align: left;
 
         &::after {
-            left: -(@cycle-width / 2) - @timeline-cycle-border-width + 2;
+            left: -(@cycle-width / 2) - @timeline-cycle-border-width;
         }
 
         .timeline-header{
@@ -143,14 +114,16 @@
             right: calc(~'100% + @{timeline-item-padding-x} + @{timeline-body-padding}');
         }
     }
-
     .timeline-item {
         width: 50%;
         padding: @timeline-item-padding-y @timeline-item-padding-x;
         box-sizing: border-box;
         position: relative;
         text-align: right;
-
+      .breakpoint-small-down({
+        padding: 50px 25px;
+      });
+        
         .timeline-header {
             text-align: left;
             top: -(@timeline-cycle-border-width * 2) + @cycle-width + (@timeline-cycle-border-width - (@cycle-width / 2)) + (@timeline-body-padding) + ( @cycle-width / 2) + @timeline-cycle-border-width;
@@ -158,12 +131,9 @@
             left: calc(~'100% + @{timeline-item-padding-x} + @{timeline-body-padding}');
             overflow: hidden;
             width: 50%;
-          .breakpoint-small-down({
-            width: 75%;
-          });
 
         }
-
+        
         .timeline-body {
             background-color: @timeline-bg-message-box;
             padding: @timeline-body-padding;
@@ -181,12 +151,11 @@
             position: absolute;
             background-color: @date-text-color;
             .rounded(50%);
-            border-color: @white-color;
-            //border-width: @timeline-cycle-border-width;
-            //border-style: solid;
-            //box-shadow: 0 0 0 @timeline-border-weight * 1 @timeline-border-color;
+            border-color: @date-text-color;
+            border-width: @timeline-cycle-border-width;
+            border-style: solid;
             z-index: 998;
-            right: -(@cycle-width / 2) + @timeline-cycle-border-width  - 2;
+            right: -(@cycle-width / 2) - @timeline-cycle-border-width;
         }
     }
 }

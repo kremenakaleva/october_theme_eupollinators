@@ -1,5 +1,5 @@
-
 $(window).scroll(animateNumbers);
+$(window).scroll(hideMenuMobileOnScropll);
 var viewed = false;
 
 var width = $(window).width();
@@ -22,56 +22,9 @@ var keepFooter = function(documentHasScroll){
 
 
 $(document).ready(function() {
+
 	/* MENU */
 	$('.navbar-nav').attr('id', 'menu'); // please don't remove this line
-
-	if (width > 700) { // desktop
-		$("#menuToggle input").on("mouseover", function () {
-			this.checked = !this.checked;
-			$('#menu').show();
-			$('#search').hide();
-			$('#menu, #menu *').css({
-				'visibility': 'visible'
-			});
-		});
-
-
-		$("#menu").on("mouseenter", function () {
-			$("#menuToggle input").prop("checked", true);
-			$('#search').hide();
-			$('#menu, #menu *').css({
-				'visibility': 'visible'
-			});
-		}).on("mouseleave", function () {
-			if ($("#search").is(':visible')) {
-				$("#menuToggle input").prop("checked", true);
-			} else {
-				$("#menuToggle input").prop("checked", false);
-			}
-		});
-	}
-
-	if (width < 700) { // mobile
-		$('#menuToggle input[type="checkbox"]').change(function(){
-			var checked = $(this).is(":checked");
-			if(checked){
-				$('#menu').show();
-				$('#search').hide();
-				$('#menu, #menu *').css({
-					'visibility': 'visible'
-				});
-				$('body', 'html').css({
-					'overflow': 'hidden'
-				});
-			}else{
-				$('#menu').hide();
-				$('#search').hide();
-				$('body', 'html').css({
-					'overflow': 'auto'
-				});
-			}
-		});
-	}
 
 	var loggedInMenuNavbar = $('.navbar-loggedin-user');
 	loggedInMenuNavbar.find('#menu').removeAttr('id');
@@ -87,11 +40,6 @@ $(document).ready(function() {
 			$(this).children(".plusminus").html('<span class="minus"></span>');
 		}
 	});
-
-	var footerNav = $('.footer-menu');
-	footerNav.removeAttr('id');
-
-
 
 
 	$('.tabs').each(function(){
@@ -178,92 +126,6 @@ $(document).ready(function() {
 		});
 	});
 
-
-
-	if (width >= 1024) {
-		$('.ri1 .key_1, .ri1 .key_3, .ri1 .key_5, .ri1 .key_7, .ri1 .key_9, .ri1 .key_11').wrapAll('<div class="col-md-6 col-xs-12" />');
-		$('.ri1 .key_0, .ri1 .key_2, .ri1 .key_4, .ri1 .key_6, .ri1 .key_8, .ri1 .key_10').wrapAll('<div class="col-md-6 col-xs-12" />');
-
-		$('.ri2 .key_1, .ri2 .key_3, .ri2 .key_5, .ri2 .key_7, .ri2 .key_9, .ri2 .key_11').wrapAll('<div class="col-md-6 col-xs-12" />');
-		$('.ri2 .key_0, .ri2 .key_2, .ri2 .key_4, .ri2 .key_6, .ri2 .key_8, .ri2 .key_10').wrapAll('<div class="col-md-6 col-xs-12" />');
-
-		$('.ri3 .key_1, .ri3 .key_3, .ri3 .key_5, .ri3 .key_7, .ri3 .key_9, .ri3 .key_11').wrapAll('<div class="col-md-6 col-xs-12" />');
-		$('.ri3 .key_0, .ri3 .key_2, .ri3 .key_4, .ri3 .key_6, .ri3 .key_8, .ri3 .key_10').wrapAll('<div class="col-md-6 col-xs-12" />');
-	}
-
-	if (width <= 1024) {
-		$('.projects_services .key_1, .projects_services .key_3, .projects_services .key_5, .projects_services .key_7, .projects_services .key_9, .projects_services .key_11, .projects_services .key_13').wrapAll('<div class="col-md-6 col-xs-12" />');
-		$('.projects_services .key_0, .projects_services .key_2, .projects_services .key_4, .projects_services .key_6, .projects_services .key_8, .projects_services .key_10, .projects_services .key_12').wrapAll('<div class="col-md-6 col-xs-12" />');
-	}
-
-
-	$('.numbers').attr('data-aos', 'fade-up');
-	$('.mission h1.display-1').attr('data-aos', 'fade-up');
-	$('.vision h1.display-1').attr('data-aos', 'fade-up');
-	$('.results h1.display-1').attr('data-aos', 'fade-up');
-	$('.card-img-top').attr('data-aos', 'fade-up');
-	$('.logo-container').attr('data-aos', 'fade-up');
-	$('.subscribe-items a').attr('data-aos', 'fade-up');
-	$('.icons a').attr('data-aos', 'fade-up');
-	$('.partners_logos_list li').attr('data-aos', 'fade-up');
-
-	// about page
-	$('.find').attr('data-aos', 'fade-up');
-	$('.interoperate').attr('data-aos', 'fade-up');
-	$('.access').attr('data-aos', 'fade-up');
-	$('.reuse').attr('data-aos', 'fade-up');
-	$('.researchTools').attr('data-aos', 'fade-up');
-	$('.interlinkedKnowledge').attr('data-aos', 'fade-up');
-	$('.texAndDataMiningWorkflows').attr('data-aos', 'fade-up');
-	$('.fairDataPlace').attr('data-aos', 'fade-up');
-	$('.journalProductionWorkflow').attr('data-aos', 'fade-up');
-	$('.biodiversityKnowledgeHub').attr('data-aos', 'fade-up');
-
-	$('.project-structure-networking h1').attr('data-aos', 'fade-up');
-	$('.project-structure-transnational h1').attr('data-aos', 'fade-up');
-	$('.project-structure-jointresearch h1').attr('data-aos', 'fade-up');
-
-
-	$('.partners svg').attr('data-aos', 'fade-up');
-	$('.card_image_container').attr('data-aos', 'fade-up');
-
-	// media
-	$('.flyer_image_container img').attr('data-aos', 'fade-up');
-	$('.broshure_and_poster img').attr('data-aos', 'fade-up');
-	// $('.logo-container img').attr('data-aos', 'fade-up');
-	$('.guide-container').attr('data-aos', 'fade-up');
-
-
-
-});
-
-function scrollDown(){
-	var element = $('#layout-content');
-	$("html, body").animate({ scrollTop: element.offset().top - 94 }, 0);
-}
-
-function showSearchForm(){
-	if ($(".search").is(':visible')) {
-		$('#menu').show();
-	} else {
-		$(".search").slideDown(300);
-		$('#menu').hide();
-	}
-
-	$('#menu').hide();
-	$('#search').toggle();
-}
-
-window.addEventListener('scroll', function (e) {
-	var headernavbar = document.getElementById("headernavbar");
-	if (window.scrollY > headernavbar.offsetHeight){
-		var headerNavbarNav = document.querySelector('#headerNavbarNav')
-		headernavbar.classList.add('scrolled');
-		headernavbar.classList.add('fixed');
-
-	}else{
-		headernavbar.classList.remove('scrolled');
-	}
 });
 
 
@@ -301,23 +163,14 @@ function appendSignOut() {
     });
 }
 
-function appendSearchAndSocialMedia(){
-	var liSearch = '<li class="nav-item search"><a href=\"javascript: void(0);\" onclick=\"showSearchForm();\"></a></li>';
-	var liSocial = '<li class="nav-item social"><a href=\"https://www.facebook.com/BiCIKLProjectH2020\" target=\"_blank\" class=\"pr p-facebook big\" target=\"_blank\"></a><a href=\"https://twitter.com/BiCIKL_H2020\" target=\"_blank\" class=\"pr p-twitter big\" target=\"_blank\"></a></li>';
-	var menu = $('#menuToggle');
-	menu.find('>ul').append(liSearch).append(liSocial);
-}
-
 function initAccordeon(pElem) {
 	$('body').on('click', '.accordion-toggle', function () {
 		if ($(this).next(".accordion-content").is(':visible')) {
 			$(this).next(".accordion-content").slideUp(300);
 			$(this).children(".plusminus").html('<span class="plus"></span>');
-			$(this).children(".read-more").text('read more');
 		} else {
 			$(this).next(".accordion-content").slideDown(300);
 			$(this).children(".plusminus").html('<span class="minus"></span>');
-			$(this).children(".read-more").text('hide');
 		}
 	});
 }
@@ -359,14 +212,13 @@ function init() {
             }
         }
         keepFooter(documentHasScroll());
-		appendSearchAndSocialMedia();
 
     });
     // appendProfile()
     // appendSignIn()
     // appendSignOut()
-
 }
+
 
 function isScrolledIntoView(elem) {
 	var docViewTop = $(window).scrollTop();
@@ -381,6 +233,7 @@ function isScrolledIntoView(elem) {
 	return;
 
 }
+
 
 function animateNumbers() {
 	if (isScrolledIntoView($(".numbers")) && !viewed) {
@@ -400,28 +253,16 @@ function animateNumbers() {
 }
 
 
-function getScreenSize() {
-	var myHeight = 0;
-	var myWidth = 0;
-	if (window.innerWidth && window.innerHeight) {
-		// Netscape & Mozilla
-		myHeight = window.innerHeight;
-		myWidth = window.innerWidth;
-	} else if (document.documentElement && (document.documentElement.clientWidth || document.documentElement.clientHeight)) {
-		// IE > 6
-		myHeight = document.documentElement.clientHeight;
-		myWidth = document.documentElement.clientWidth;
-	} else if (document.body.offsetWidth && document.body.offsetHeight) {
-		// IE = 6
-		myHeight = document.body.offsetHeight;
-		myWidth = document.body.offsetWidth;
-	} else if (document.body.clientWidth && document.body.clientHeight) {
-		// IE < 6
-		myHeight = document.body.clientHeight;
-		myWidth = document.body.clientWidth;
-	}
+function hideMenuMobileOnScropll() {
+	if (width < 900 && $('.content-wrapper').hasClass('home')) {
+		var scroll = $(window).scrollTop();
+		if(scroll > 50){
+			$('#menuToggle').fadeOut();
+		}else {
+			$('#menuToggle').fadeIn();
+		}
 
-	return {'width': myWidth, 'height': myHeight};
+	}
 }
 
 init()

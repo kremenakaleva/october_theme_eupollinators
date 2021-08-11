@@ -1,31 +1,42 @@
+title = "Partners"
 url = "/partners"
 layout = "default"
-title = "Partners"
 is_hidden = 0
 robot_index = "index"
 robot_follow = "follow"
-header_image = "header/partners.jpg"
 
-[profile_records]
-show-category-title = 1
-category = 1
-maxItems = 10
+==
+<?php
+use Pensoft\Partners\Models\Partners;
 
-[PartnersPage]
-limit = 0
-templates = "template5"
+function onStart(){
+	$this['partners'] =  Partners::all();
+}
+?>
 ==
 <div class="container">
+	<h1 class="display-1">Organisers and partners</h1>
+	<div class="row mt-4">
 
-	<div class="row">
-		<div class="col-sm-6 col-xs-12">
-			<span class="tooltiptext" id="tooltip">Bulgaria</span>
+
+	{% for partner in partners %}
+		<div class="col-xs-12 col-md-3 partner-item">
+			<div class="row">
+				<div class="col-md-5 col-xs-12 start-md center-xs">
+					{% if partner.cover %}
+						<img src="{{partner.cover|resize(159, 150, { mode: 'crop' })}}">
+					{% else %}
+						<div class="no-logo-partner">Logo</div>
+					{% endif %}
+				</div>
+				<div class="col-md-7 col-xs-12"><h3>{{partner.instituion}}</h3>
+					{{partner.content|raw}}</div>
+			</div>
 		</div>
+
+
+	{% endfor %}
 	</div>
-
-
-{% component 'PartnersPage' %}
-
 
 
 </div>

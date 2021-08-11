@@ -40,99 +40,33 @@
       .font-size(0.80);
     }
     &.normal {
-      .font-size(1.5);
+      font-size: 20px;
+      float: left;
+      margin-right: 5px;
+      height: 20px;
     }
     &.big {
       .font-size(2);
     }
-
-    &.middle {
-      .font-size(2.3);
-    }
-
-    &.medium {
-      .font-size(3);
-    }
     &.large {
-      .font-size(3.5);
+      .font-size(3);
     }
     &.huge {
       .font-size(5);
     }
     &.p-primary {
-      color: @button-background-color!important;
-      background-color: @white-color!important;
-      border: 1px solid #c9c9c9!important;
-      padding: 10px!important;
-      line-height: 64px;
-      width: 84px;
-      height: 84px;
-      text-align: center;
-      .rounded(50%);
+      color: @white-color;
+      background: @yellow-color;
+      .rounded(50px);
+      padding: 0 13px;
+      .breakpoint-small-down({
+        max-width: 67px;
+        margin: 20px 0;
+      });
 
-    }
-    &.p-primary:hover {
-      color: @white-color!important;
-      background-color: @button-background-color!important;
-      border: 1px solid #c9c9c9!important;
-      padding: 10px!important;
-      line-height: 64px;
-      width: 84px;
-      height: 84px;
-      text-align: center;
-      .rounded(50%);
-      opacity: 1!important;
     }
     &.p-secondary {
-      background: @footer-color!important;
-      color: @white-color!important;
-      border: 1px solid @white-color!important;
-      font-weight: 600;
-      padding: 5px!important;
-      .rounded(50%);
-      line-height: 1em!important;
-    }
-    &.p-secondary:hover {
-      background: @white-color!important;
-      color: @footer-color!important;
-      border: 1px solid @white-color!important;
-      line-height: 1em;
-      font-weight: 600;
-      padding: 5px!important;
-      opacity: 1!important;
-    }
-
-    .social{
-      &.p-secondary {
-        background: none!important;
-        color: @white-color!important;
-        border: none!important;
-        font-weight: 600;
-        padding: 5px!important;
-        .rounded(50%);
-        line-height: 1em!important;
-      }
-      &.p-secondary:hover {
-        background: none!important;
-        color: @white-color!important;
-        border: none!important;
-        line-height: 1em;
-        font-weight: 600;
-        padding: 5px!important;
-        opacity: 0.7!important;
-      }
-    }
-
-
-    &.p-search {
-      color: @white-color!important;
-      font-weight: 600;
-      padding: 5px!important;
-      .rounded(50%);
-      line-height: 1em!important;
-    }
-    &.p-search:hover {
-      opacity: 1!important;
+      color: @secondary-color;
     }
     &.p-success {
       color: @success-color;
@@ -205,9 +139,6 @@
   content: "\e900";
 }
 .p-location:before {
-  content: "\e90a";
-}
-.p-time:before {
   content: "\e901";
 }
 .p-gearwheel:before {
@@ -240,15 +171,6 @@
 .p-mail:before {
   content: "\eaee";
 }
-.p-website:before {
-  content: "\e903";
-}
-.p-organisation:before {
-  content: "\e911";
-}
-.p-phone:before {
-  content: "\e904";
-}
 .p-mendeley:before {
   content: "\eaef";
 }
@@ -263,15 +185,6 @@
 }
 .p-youtube:before {
   content: "\eaf3";
-}
-.p-subscribe:before {
-  content: "\e914";
-}
-.p-subscribe2:before {
-  content: "\e902";
-}
-.p-mail:before {
-  content: "\e906";
 }
 .p-key:before {
   content: "\eaf4";

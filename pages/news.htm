@@ -1,20 +1,13 @@
+title = "News"
 url = "/news/:id?|[a-zA-Z\-0-9]"
 layout = "default"
-title = "News"
 is_hidden = 0
 robot_index = "index"
 robot_follow = "follow"
-header_image = "header/news.jpg"
 
 [list]
 maxItems = 10
-templates = "template3"
-thumb_width = 401
-thumb_height = 247
-no_records_message = "Stay tuned for upcoming news!"
-
-[related_articles]
-limit = 2
+templates = "template2"
 ==
 <?php
 function urlencode($string){
@@ -50,30 +43,20 @@ function onStart()
 ==
 <div class="container">
     {% if is_detail_page %}
-        <div class="row newslist single-news-item">
-			<div class="col-xs-12 col-md-5">
-				{% if article.cover %}
-					<img class="content left" src="{{ article.cover|crop_image|resize(673, 411, { mode: 'crop' }) }}" />
-				{% endif %}
-				{% if article.allow_share == 'yes' %}
-				<div class="btn btn-primary share-btn" id="share-{{slug}}">Share</div>
-				{% endif %}
-				<div class="text-published">{{article.pretty_published_at}}</div>
-				<div class="related_articles">
-					<h1 class="single-new-title">Related articles</h1>
-					{% component 'related_articles' %}
-				</div>
-			</div>
-
-			<div class="col-xs-12 col-md-7">
-
+        <div class="row">
+            <div class="col-xs-12">
+                {% if article.cover %}
+                    <img class="content left" src="{{ article.cover|crop_image|resize(500, false, { mode: 'crop' }) }}" />
+                {% endif %}
 
                 <div class="news-title">
-                    <h1 class="single-new-title">{{article.title}}</h1>
-
+                    <h1>{{article.title}}</h1>
+                    {% if article.allow_share == 'yes' %}
+                        <div class="share-btn"><i id="share-{{slug}}" class="pr big p-share1"></i></div>
+                    {% endif %}
                 </div>
 
-
+                <p class="text-published">{{article.pretty_published_at}}</p>
                 <div class="content">
                     {{article.content|raw}}
                 </div>

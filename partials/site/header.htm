@@ -1,16 +1,12 @@
-[viewBag]
-
 [menu]
-start = "id-1"
+start = "id-9"
 activeNode = 0
 listItemClasses = "nav-item"
 primaryClasses = "navbar-nav"
 secondaryClasses = "dropdown-menu"
 numberOfLevels = 2
-
 ==
-<nav class="pr-1 pl-1 pt-2 pb-2 navbar fixed" id="headernavbar">
-	<a href="{{'home'|page}}" class="navbar-brand" style="background-image: url('{{ this.theme.site_logo.getPath() }}'); background-position: center; background-size: contain;"></a>
+<nav class="pr-1 pl-1 navbar fixed " id="headernavbar">
 	<div id="menuToggle">
 		<input type="checkbox" />
 		<span></span>
@@ -18,26 +14,7 @@ numberOfLevels = 2
 		<span></span>
 		{% component 'menu' %}
 	</div>
-	<div id="search" class="search" style="display: none">
-		<form class="input-group align-items-start" action="{{ 'search' | page }}" method="get">
-			<input class="form-control search" name="q" type="text" autocomplete="on">
-			<button class="btn search text-grey-search-btn" type="submit"></button>
-		</form>
-	</div>
+
 </nav>
 
-
-
-
-{% if this.theme.header_image and page_id != 'home' %}
-<div class="header-image {{page_id}}">
-	{%if this.page.header_image %}
-	<div class="header-image-bar" style="background-image: url('{{this.page.header_image|media}}'); background-position: top center;"></div>
-	{%else%}
-	<div class="header-image-bar" style="background-image: url('{{this.theme.header_image.getPath()}}'); background-position: top center;"></div>
-	{%endif%}
-	<div class="jumbotron px-1">
-		<h1 class="underline white">{%if page_title%} {{page_title}} {%else%} {{site_name}} {%endif%}</h1>
-	</div>
-</div>
-{% endif %}
+<div class="header-image {{page_id}}"></div>

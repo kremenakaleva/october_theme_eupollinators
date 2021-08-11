@@ -1,148 +1,203 @@
-url = "/events/:slug?|[a-zA-Z\-0-9]"
+url = "/agenda/:slug?|[a-zA-Z\-0-9]"
 layout = "default"
-title = "Events"
+title = "Agenda"
 is_hidden = 0
 robot_index = "index"
 robot_follow = "follow"
-header_image = "header/events.jpg"
 
-[calendar]
-default = "true"
-limit = 10
-category = "null"
-language = "en"
-
-[calendar calendarOrganized]
-default = "true"
-limit = 10
-category = 1
-language = "en"
-
-[calendar calendarInvolved]
-default = "true"
-limit = 10
-category = 2
-language = "en"
 ==
 <?php
-use Pensoft\Calendar\Models\Entry;
+	use Pensoft\Calendarcardsextension\Models\Records;
+	use Carbon\Carbon;
 
-function onStart(){
+	function onStart(){
+		$events = Records::events();
+		$day1 = '2021-09-27';
+		$this['day1_events'] = $events->filter(function ($item) use ($day1) {
+			return (Carbon::parse( data_get($item, 'start'))->format('Y-m-d') >= $day1 && Carbon::parse( data_get($item, 'start'))->format('Y-m-d') <= $day1);
+		});
 
-    if($this->param('slug')){
-		$this['entry'] =  Entry::select(
-			'*',
-			'title',
-			'place',
-			'description',
-			'url',
+		$day2 = '2021-09-28';
+		$this['day2_events'] = $events->filter(function ($item) use ($day2) {
+			return (Carbon::parse( data_get($item, 'start'))->format('Y-m-d') >= $day2 && Carbon::parse( data_get($item, 'start'))->format('Y-m-d') <= $day2);
+		});
 
-			DB::raw("to_char(\"start\", 'DD') as start_day"),
-			DB::raw("to_char(\"start\", 'YYYY') as start_year"),
-			DB::raw("to_char(\"end\", 'DD') as end_day"),
-			DB::raw("to_char(\"end\", 'YYYY') as end_year"),
-			DB::raw("to_char(\"start\", 'month') as start_month"),
-			DB::raw("to_char(\"end\", 'month') as end_month"),
-			DB::raw("
-				\"end\" is not null as has_end
-			")
-			
-			
-		)->where('slug', $this->param('slug'))->first();
+		$day3 = '2021-09-29';
+		$this['day3_events'] = $events->filter(function ($item) use ($day3) {
+			return (Carbon::parse( data_get($item, 'start'))->format('Y-m-d') >= $day3 && Carbon::parse( data_get($item, 'start'))->format('Y-m-d') <= $day3);
+		});
+
+		$day4 = '2021-09-30';
+		$this['day4_events'] = $events->filter(function ($item) use ($day4) {
+			return (Carbon::parse( data_get($item, 'start'))->format('Y-m-d') >= $day4 && Carbon::parse( data_get($item, 'start'))->format('Y-m-d') <= $day4);
+		});
+
 	}
-    
-    //$slug = (int)$this->param('slug') ? (int)$this->param('slug') : 1;
-	//$this['SelectedLanguage'] = App::getLocale();
-    //$this['slug'] = !(is_numeric($this->param('slug')) || $this->param('slug') == null);
-    
-    $this['slug'] = $this->param('slug');
-}
+
 ?>
 ==
 <div class="container">
-{% if not slug %}
-	<div class="tabs">
-		<a class="btn btn-primary" href="#all">All events</a>
-		<a class="btn btn-primary" href="#organised">{{this.theme.site_name}} organised</a>
-		<a class="btn btn-primary" href="#involved">{{this.theme.site_name}} involved</a>
-	</div>
-	<!--tabs content	-->
+	<h1 class="display-1">Agenda</h1>
 
-	<div class="row" id="all">
-    	{% component 'calendar' %}
-	</div>
-
-	<div class="row" id="organised">
-    	{% component 'calendarOrganized' %}
-	</div>
-
-	<div class="row" id="involved">
-    	{% component 'calendarInvolved' %}
-	</div>
-{% else %}
-
-    {% if entry %}
-	<div class="row newslist single-news-item">
-		{% set materials = entry.materials %}
-		{% if entry.cover_image or materials %}
-		<div class="col-xs-12 col-md-5">
-			{% if entry.cover_image %}
-			<img class="content left" src="{{entry.cover_image|crop_image|resize(673, 411, {'mode':'crop'})}}" alt="{{entry.cover_image.title}}">
-			{% endif %}
-
-			{% if materials %}
-			<ul class="event_materials">
-				<h1 class="display-1">Materials</h1>
-				{% for item in materials %}
-					{% set url = item.button_file ? item.button_file|media : item.button_url %}
-					<li>
-						<h2>{{ item.title }}</h2>
-						<a class="btn btn-primary" href="{{ url }}" target="_blank">{{ item.button_title }}</a>
-					</li>
-				{% endfor %}
-			</ul>
-			{% endif %}
-
-		</div>
-
-		<div class="col-xs-12 col-md-7">
-		{% else %}
-			<div class="col-xs-12 col-md-12">
-		{% endif %}
-
-			<div class="news-title">
-				<h1 class="single-new-title">{{ entry.title }}</h1>
-
+	<div class="container tabs">
+		<div class="row mb-4">
+			<div class="col-md-1 col-xs-12">
+				<a href="#september27" title="Day 1" class="btn btn-primary">
+					Day 1
+				</a>
 			</div>
-			{% if entry.event_date %}
-			<div class="event-date">
-				<i class="pr p-time"></i> {{entry.event_date}}
-				{{entry.event_time}}
+			<div class="col-md-1 col-xs-12">
+				<a href="#september28" title="Day 2" class="btn btn-primary">
+					Day 2
+				</a>
 			</div>
-			{% endif %}
-
-			{% if entry.place %}
-			<div class="event-place"><i class="pr p-location"></i> {{ entry.place }}</div>
-			{% endif %}
-
-			<div class="content mt-2">
-				{{ entry.description|raw }}
+			<div class="col-md-1 col-xs-12">
+				<a href="#september29" title="Day 3" class="btn btn-primary">
+					Day 3
+				</a>
+			</div>
+			<div class="col-md-1 col-xs-12">
+				<a href="#september30" title="Day 4" class="btn btn-primary">
+					Day 4
+				</a>
 			</div>
 		</div>
+
+
+
+
+		<!--tabs content	-->
+		<div class="row" id="september27">
+			{% for event in day1_events %}
+			<div class="col-xs-12 event-item">
+				<div class="row middle-xs">
+					<div class="col-md-6 col-xs-12 event-time-date-place">
+						<span class="date">{{event.start|date("j F Y")}}</span>
+						<span class="time">{{event.start|date("H:i")}}</span>
+						<span class="place">{{event.place}}</span>
+					</div>
+					<div class="col-xs">&nbsp;</div>
+					<div class="col-md-3 col-xs-12 type"><span class="text mr-1">{{event.name}}</span><span class="red-spot"></span></div>
+				</div>
+				<div class="row">
+					<div class="col-xs-12 event-content">
+						<div class="title">{{event.title}}</div>
+						{% if event.speakers.count() %}
+							<div class="speaeker">Speaker:
+								{% for speaker in event.speakers %}
+									{{speaker.names}}{% if not loop.last %},{% endif %}
+								{% endfor %}
+							</div>
+						{% endif %}
+						<div class="join mt-1">
+							<a href="{{'contact'|page}}" class="btn btn-primary">Join</a>
+						</div>
+					</div>
+				</div>
+
+			</div>
+			{% endfor %}
+		</div>
+
+
+		<div class="row" id="september28">
+			{% for event in day2_events %}
+			<div class="col-xs-12 event-item">
+				<div class="row middle-xs">
+					<div class="col-md-6 col-xs-12 event-time-date-place">
+						<span class="date">{{event.start|date("j F Y")}}</span>
+						<span class="time">{{event.start|date("H:i")}}</span>
+						<span class="place">{{event.place}}</span>
+					</div>
+					<div class="col-xs">&nbsp;</div>
+					<div class="col-md-3 col-xs-12 type"><span class="text mr-1">{{event.name}}</span><span class="red-spot"></span></div>
+				</div>
+				<div class="row">
+					<div class="col-xs-12 event-content">
+						<div class="title">{{event.title}}</div>
+						{% if event.speakers.count() %}
+						<div class="speaeker">Speaker:
+							{% for speaker in event.speakers %}
+							{{speaker.names}}{% if not loop.last %},{% endif %}
+							{% endfor %}
+						</div>
+						{% endif %}
+						<div class="join mt-1">
+							<a href="{{'contact'|page}}" class="btn btn-primary">Join</a>
+						</div>
+					</div>
+				</div>
+
+			</div>
+			{% endfor %}
+		</div>
+
+
+		<div class="row" id="september29">
+			{% for event in day3_events %}
+			<div class="col-xs-12 event-item">
+				<div class="row middle-xs">
+					<div class="col-md-6 col-xs-12 event-time-date-place">
+						<span class="date">{{event.start|date("j F Y")}}</span>
+						<span class="time">{{event.start|date("H:i")}}</span>
+						<span class="place">{{event.place}}</span>
+					</div>
+					<div class="col-xs">&nbsp;</div>
+					<div class="col-md-3 col-xs-12 type"><span class="text mr-1">{{event.name}}</span><span class="red-spot"></span></div>
+				</div>
+				<div class="row">
+					<div class="col-xs-12 event-content">
+						<div class="title">{{event.title}}</div>
+						{% if event.speakers.count() %}
+						<div class="speaeker">Speaker:
+							{% for speaker in event.speakers %}
+							{{speaker.names}}{% if not loop.last %},{% endif %}
+							{% endfor %}
+						</div>
+						{% endif %}
+						<div class="join mt-1">
+							<a href="{{'contact'|page}}" class="btn btn-primary">Join</a>
+						</div>
+					</div>
+				</div>
+
+			</div>
+			{% endfor %}
+		</div>
+
+
+		<div class="row" id="september30">
+			{% for event in day4_events %}
+			<div class="col-xs-12 event-item">
+				<div class="row middle-xs">
+					<div class="col-md-6 col-xs-12 event-time-date-place">
+						<span class="date">{{event.start|date("j F Y")}}</span>
+						<span class="time">{{event.start|date("H:i")}}</span>
+						<span class="place">{{event.place}}</span>
+					</div>
+					<div class="col-xs">&nbsp;</div>
+					<div class="col-xs-md-3 col-xs-12 type"><span class="text mr-1">{{event.name}}</span><span class="red-spot"></span></div>
+				</div>
+				<div class="row">
+					<div class="col-xs-12 event-content">
+						<div class="title">{{event.title}}</div>
+						{% if event.speakers.count() %}
+						<div class="speaeker">Speaker:
+							{% for speaker in event.speakers %}
+							{{speaker.names}}{% if not loop.last %},{% endif %}
+							{% endfor %}
+						</div>
+						{% endif %}
+						<div class="join mt-1">
+							<a href="{{'contact'|page}}" class="btn btn-primary">Join</a>
+						</div>
+					</div>
+				</div>
+
+			</div>
+			{% endfor %}
+		</div>
+
+		<!-- end  content	-->
 	</div>
-    
-    {% else %}
-    {% endif %}
-
-{% endif %}
-
 </div>
-<script>
-	var documentHasScroll = function() {
-		return window.innerHeight <= document.body.offsetHeight;
-	};
-	function ready() {
-		keepFooter(documentHasScroll());
-	}
-	document.addEventListener("DOMContentLoaded", ready);
-</script>

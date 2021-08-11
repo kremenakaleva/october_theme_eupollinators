@@ -11,82 +11,67 @@ escape = 1
 
 [googleTracker]
 
-
-[carousel]
-id = 1
 ==
-
 <!DOCTYPE html>
 <html>
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    {% component 'SeoCmsPage' %} 
-    {% if this.theme.site_icon %}
-    <link rel="icon" type="{{this.theme.site_icon.getContentType()}}" href="{{this.theme.site_icon.getPath()}}">
-    {% endif %}
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	{% component 'SeoCmsPage' %}
+	{% if this.theme.site_icon %}
+	<link rel="icon" type="{{this.theme.site_icon.getContentType()}}" href="{{this.theme.site_icon.getPath()}}">
+	{% endif %}
 
-    <link href="{{ ['assets/less/theme.less']|theme }}" rel="stylesheet">
+	<link href="{{ ['assets/less/theme.less']|theme }}" rel="stylesheet">
 	<link rel="stylesheet" href="{{ 'assets/css/aos.css'|theme }}">
 	<script src="{{ 'assets/js/aos.js'|theme }}"></script>
 
+
+
+	<script src="{{ 'assets/js/jquery.js'|theme }}"></script>
 	{% if this.page.id == 'home' %}
-    <link href="{{ 'assets/css/bootstrap.min.css'|theme }}" rel="stylesheet">
+	<script src="{{ 'assets/js/bootstrap.min.js'|theme }}"></script>
+	<script src="{{ 'assets/js/anime.js'|theme }}"></script>
 	{% endif %}
 
-    <script src="{{ 'assets/js/jquery.js'|theme }}"></script>
-	{% if this.page.id == 'home' %}
-    <script src="{{ 'assets/js/bootstrap.min.js'|theme }}"></script>
-    <script src="{{ 'assets/js/anime.js'|theme }}"></script>
-	{% endif %}
-
-    <script src="{{ 'assets/js/popper.min.js'|theme }}"></script>
-    <script src="{{ 'assets/js/tippy-bundle.umd.min.js'|theme}}"></script>
-    <script src="{{ 'assets/js/app.js'|theme }}"></script>
-    <script src="{{ 'assets/js/jquery-ui.js'|theme }}"></script>
-    <script src="{{ 'assets/vendor/bootstrap/js/modal.js'|theme  }}"></script>
-    <script type="text/javascript" src="{{ 'assets/js/slick.min.js'|theme }}"></script>
+	<script src="{{ 'assets/js/popper.min.js'|theme }}"></script>
+	<script src="{{ 'assets/js/tippy-bundle.umd.min.js'|theme}}"></script>
+	<script src="{{ 'assets/js/app.js'|theme }}"></script>
+	<script src="{{ 'assets/js/jquery-ui.js'|theme }}"></script>
+	<script src="{{ 'assets/vendor/bootstrap/js/modal.js'|theme  }}"></script>
+	<script type="text/javascript" src="{{ 'assets/js/slick.min.js'|theme }}"></script>
 	<script src="{{ 'assets/js/ckeditor/ckeditor.js'|theme}}"></script>
 
-    {% component 'metaList' %}
-    {% framework extras %}
-    {% styles %}
-    {% scripts %}
+	{% component 'metaList' %}
+	{% framework extras %}
+	{% styles %}
+	{% scripts %}
 </head>
 
 <body>
+<script>
+	AOS.init();
+</script>
+	<div class="content-wrapper {{this.page.id}}">
+		<div id="fb-root"></div>
+		<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v8.0" nonce="X0nPVr3s"></script>
+		<!-- Header -->
+		<header id="layout-header">
+			{% partial 'site/header'
+				site_name=this.theme.site_name
+				tag_line=this.theme.tag_line
+				page_title=this.page.title
+				page_id=this.page.id
+			%}
+		</header>
 
-    <div id="fb-root"></div>
-    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v8.0" nonce="X0nPVr3s"></script>
-    <!-- Header -->
-    <header id="layout-header">
-        {% partial 'site/header'
-            site_name=this.theme.site_name
-            tag_line=this.theme.tag_line
-            page_title=this.page.title
-            page_id=this.page.id
-        %}
-		{% if this.page.id == 'home' %}
-        {% component 'carousel' %}
-		{% endif %}
-    </header>
-	{% if this.page.id == 'home' %}
-	<div class="container homepage">
-		<div class="slogan_text">
-			{{ this.theme.tag_line|raw }}
-		</div>
+		<!-- Content -->
+		<section id="layout-content">
+			{% page %}
+			{% component 'googleTracker' %}
+		</section>
 	</div>
-	<div class="scroll_down_arrow"><a href="javascrpt:void(0);" onclick="scrollDown();"></a></div>
-	{% endif %}
-
-
-    <!-- Content -->
-    <section id="layout-content" class="{{this.page.id}}">
-        {% page %}
-        {% component 'googleTracker' %}
-    </section>
-
     {% if this.theme.enable_footer %}
     <!-- Footer -->
     <footer id="layout-footer">
@@ -111,16 +96,7 @@ id = 1
     {% endif %}
 
     <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-    
-    
-	<div id="gdpr-reload">
-		{% partial 'gdpr' %}
-	</div>
-	<script>
-		$(function() {
-			AOS.init();
-		});
-	</script>
+
 </body>
 
 </html>

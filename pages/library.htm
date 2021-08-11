@@ -1,15 +1,15 @@
-url = "/library"
+url = "/resources"
 layout = "default"
-title = "Library"
+title = "Resources"
 is_hidden = 0
 robot_index = "index"
 robot_follow = "follow"
-header_image = "header/library.jpg"
 
 [LibraryPage]
-templates = "template3"
-has_search = 1
+templates = "template2"
+no_records_message = "No records found"
 ==
 <div class="container">
-	{% component 'LibraryPage' %}
+	<h1>Resources</h1>
+{% component 'LibraryPage' %}
 </div>

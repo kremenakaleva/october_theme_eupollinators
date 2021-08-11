@@ -1,164 +1,62 @@
 url = "/"
 layout = "default"
-title = "BiCIKL Homepage"
+title = "EU Pollinators Homepage"
 is_hidden = 0
 meta_description = "homepage desc"
 seo_keywords = "keywords"
 robot_index = "index"
 robot_follow = "follow"
 
-[article_highlights]
-maxItems = 4
-title = "Latest news"
-baseUrl = "/news"
-templates = "template4"
-thumb_width = 398
-thumb_height = 361
-
-[siteSearchInclude]
-
 [Timeline]
-limit = 5
-upcoming = 0
+limit = 3
+upcoming = 1
+link = "#september"
+use_day = 1
 
-[jumbotron mission]
-jumbotron = "mission"
-title = 1
+[jumbotron intro]
+jumbotron = "homepage-intro"
 background = "#ffffff"
-templates = "template2"
-description_limit = 0
-
-[jumbotron vision]
-jumbotron = "vision"
-title = 1
-background = "#ffffff"
-templates = "template2"
-description_limit = 0
-
-[jumbotron results]
-jumbotron = "results"
-title = 1
-background = "#ffffff"
-templates = "template2"
+templates = "template1"
 description_limit = 0
 
 [jumbotron numbers]
-jumbotron = "bicikl-numbers"
-title = 1
-templates = "template2"
-description_limit = 0
-
-[jumbotron rihome]
-jumbotron = "research-infrastructures-home"
-title = 1
+jumbotron = "numbers"
 templates = "template2"
 description_limit = 0
 ==
 <?php
-use Pensoft\Partners\Models\Partners;
+use Pensoft\Media\Models\Webinars;
 
-function onStart(){
-	$this['riItems'] =  Partners::whereIn('type', array(2,3,4))->get();
-}
+	function onStart(){
+		$this['webinar'] =  Webinars::orderby('created_at')->first();
+	}
 ?>
 ==
+{% component 'intro' %}
 
-{% component 'siteSearchInclude' %}
+<div class="container numbers-background">
+	{% component 'numbers' %}
+</div>
 <div class="container">
-	<div class="row group top-xs">
-		<div class="col-md-6 col-xs-12">
-			<div class="mission">
-				{% component 'mission' %}
-			</div>
-			<div class="vision">
-				{% component 'vision' %}
-			</div>
-			<div class="results">
-				{% component 'results' %}
-			</div>
-		</div>
-		<div class="col-md-6 col-xs-12 mission-vision-background-image center-xs" data-aos="fade-up">
-			<a href="{{'about'|page}}" class="btn btn-primary">Read more</a>
-		</div>
-	</div>
-</div>
-<div class="container-fluid">
-	<div class="container">
-		{% component 'numbers' %}
-	</div>
-</div>
-<div class="container-fluid">
-	<div class="container" style="display: flow-root">
-		<h1 class="display-1">Research infrastructures</h1>
-		<div class="row">
-			{% for item in riItems %}
-				<div class="col-xs-6 col-md ri-item start-md center-xs">
-					<div class="logo-container"><a href="{{item.instituion_url}}" target="_blank"><img src="{{item.cover.getThumb(120, auto, {'mode': 'crop'})}}" class="fr-fic fr-dii" title="{{item.instituion}}"></a></div>
-				</div>
-			{% endfor %}
-		</div>
-	</div>
-</div>
-	{% component 'article_highlights' %}
-<div class="container">
+
 	<div class="row">
-		<div class="col-xs-12">
-			<h1 class="base_heading highlight_new_template_3">Events</h1>
+		<div class="col-sm-6 col-xs-12">
+			{% if webinar.youtube_url %}
+				<iframe class="preview-webinar" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" frameborder="0" src="{{webinar.youtube_url}}" width="100%" height="425"></iframe>
+			{% endif %}
+		</div>
+		<div class="col-sm-6 col-xs-12">
+			<div class="twitter-widget">
+			    <a class="twitter-timeline" href="https://twitter.com/poshbee_eu?ref_src=twsrc%5Etfw">Tweets by poshbee_eu</a>
+                <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+			</div>
 		</div>
 	</div>
-	{% component 'Timeline' %}	
+
+
 </div>
 
-<div class="container-fluid home-background">
-	<div class="container">
-		<!-- subscribes -->
-		<div class="row">
-			<div class="col-sm-6 col-xs-12">
-				<div class="twitter-widget">
-					<a class="twitter-timeline" href="https://twitter.com/BiCIKL_H2020?ref_src=twsrc%5Etfw">Tweets by BiCIKL_H2020</a>
-					<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-				</div>
-			</div>
-			<div class="col-sm-3 col-xs-12">
-
-				<div class="subscribe-container">
-					<div class="row subscribe-items">
-						<div class="col-xs-12"><h1 class="display-1">Follow {{ this.theme.site_name }}</h1></div>
-						<div class="col-xs-12">
-							{% if this.theme.twitter %}
-							<a href="{{this.theme.twitter_url}}" target="_blank" class="pr p-primary p-twitter large"></a>
-							{% endif %}
-							{% if this.theme.facebook %}
-							<a href="{{this.theme.facebook_url}}" target="_blank" class="pr p-primary p-facebook large"></a>
-							{% endif %}
-							{% if this.theme.linkedin %}
-							<a href="{{this.theme.linkedin_url}}" target="_blank" class="pr p-primary p-linkedin large"></a>
-							{% endif %}
-							{% if this.theme.youtube %}
-							<a href="{{this.theme.youtube_url}}" target="_blank" class="pr p-primary p-youtube large"></a>
-							{% endif %}
-							{% if this.theme.instagram %}
-							<a href="{{this.theme.instagram_url}}" target="_blank" class="pr p-primary p-instagram large"></a>
-							{% endif %}
-						</div>
-
-					</div>
-					<div class="row subscribe-items">
-						<div class="col-xs-12"><h1 class="display-1">Subscribe</h1></div>
-						<div class="col-xs-12">
-							{%if this.theme.subscribe%}
-							<a href="{{this.theme.subscribe}}" target="_blank" class="pr p-primary p-subscribe middle"></a>
-							{%endif%}
-
-							{%if this.theme.feedback%}
-							<a href="mailto:{{this.theme.feedback}}" class="btn btn-primary fluid">Feedback</a>
-							{%endif%}
-						</div>
-					</div>
-				</div>
-
-
-			</div>
-		</div>
-	</div>
+<div class="container">
+	<h1 class="display-1">Events</h1>
+	{% component 'Timeline' %}
 </div>

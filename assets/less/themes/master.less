@@ -1,28 +1,18 @@
 html,body {
-    font-family: @font-family, Arial, sans-serif!important;
+    font-family: @font-family, Arial, sans-serif;
     background-color: @background-color;
     color: @text-color-default;
     font-weight: normal;
     .font-size();
     .line-height();
     .letter-spacing();
-    scroll-behavior: smooth;
-}
-a, a:hover, a:active, a:visited, a:active{
-  text-decoration: none!important;
-}
-
-a:hover, a:active, a:visited, a:active{
-
+    height: 100%;
+    margin: 0;
 }
 
 a {
     &.no-color{
-      color: @green-color;
-    }
-    &.no-color:hover{
-      color: @green-color;
-      opacity: 0.7;
+      color: @link-color;
     }
     .text-link;
 }
@@ -36,6 +26,7 @@ ol.q {list-style-type: upper-roman; padding-left: 20px;}
 
 
 
+
 .header-image {
     overflow: hidden;
     position: relative;
@@ -43,80 +34,58 @@ ol.q {list-style-type: upper-roman; padding-left: 20px;}
     justify-content: center;
     display: flex;
     color: @white-color;
+    background: url('../../assets/images/EU-Pollinators-Initiative-other.jpg');
+    height: 438px;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    background-position: center 88px;
+    //background-position: bottom center;
+    background-repeat: no-repeat;
+    background-size: contain;
 
-    .header-image-bar {
-        width: 100%;
-        height: 335px;
-        background-size: cover;
-
-        .breakpoint-small-down({
-          //background: url("../../../../storage/app/media/mobile-image.png")!important;
-          //background-size: 100%!important;
-          //background-position: center!important;
-          //background-position-y: 80px!important;
-        });
-        .breakpoint-laptop-down({
-          //height: 560px;
-        });
-
-    }
-
-    h1 {
-        &.underline {
-            padding-left: 1rem;
-            padding-right: 1rem;
-            padding-bottom: 85px;
-            margin-bottom: 0;
-            font-size: 68px;
-            line-height: 52px;
-            color: @white-color;
-            //width: 1146px;
-            text-align: center;
-            &.home-page-header{
-              text-transform: unset;
-              font-size: 52px;
-              line-height: 62px;
-              .breakpoint-small-down({
-                  font-size: 33px;
-                  line-height: 56px;
-              });
-              .breakpoint-huge-down({
-                width: auto!important;
-              });
-            }
-          .breakpoint-small-down({
-              width: 85%;
-              padding-left: 20px;
-              padding-right: 20px;
-              padding-bottom: 35px;
-              line-height: 47px!important;
-          });
-        }
-    }
-
-    .jumbotron{
-      font-size: 1.5em;
-      
-      .breakpoint-small-down({
-          font-size: 1.3em;
-      });
-    }
-
-
-
+    .breakpoint-laptop-down({
+      //background: url('../../../../storage/app/media/EU-Pollinators-Initiative-other.jpg') no-repeat;
+      //height: 141px;
+      //background-position: top center;
+      ////background-position: bottom center;
+      //background-repeat: no-repeat;
+      //background-size: cover;
+      //position: fixed;
+      height: 318px;
+    });
+    .breakpoint-small-down({
+      background: url('../../assets/images/EU-Pollinators-Initiative-other.jpg') no-repeat;
+      height: 111px;
+      background-position: 24% top;
+      //background-position: bottom center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      position: fixed;
+    });
 
     &.home {
-        .header-image-bar {
-          display: block;
-          max-width: 100%;
-          height: 100vh;
-          background: url('http://bicikl.pensoft.com/storage/app/uploads/public/60e/468/910/60e468910e76f281835845.jpg') top center no-repeat;
-        }
-        h1 {
-            &.underline {
-                border-bottom: none;
-            }
-        }
+      /* Full height */
+      background: url('../../assets/images/EU-Pollinators-Initiative-home.jpg');
+      /* Full height */
+      height: 100vh;
+      width: 100%;
+      padding: 0;
+      margin: 0;
+
+      /* Center and scale the image nicely */
+      background-position: bottom center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      position: relative;
+
+      .breakpoint-small-down({
+        background: url('../../assets/images/EU-Pollinators-Initiative-mobile.jpg');
+        background-position: top left;
+        background-repeat: no-repeat;
+        background-size: cover;
+      });
+
     }
 
     .breakpoint-large({
@@ -129,17 +98,62 @@ ol.q {list-style-type: upper-roman; padding-left: 20px;}
 
 #layout-content {
     padding-top: @padding-base-space * 0;
-    padding-bottom: @padding-base-space * 0;
-
+    padding-bottom: 100px;
+    //.breakpoint-laptop-down ({
+    //  padding-top: 120px;
+    //});
     .breakpoint-small-down ({
-        .slick-next, .slick-prev {
-            display: none !important;
-        }
-    })
+      padding-top: 80px;
+    });
 }
 
+
+.home{
+  #layout-content {
+    padding-top: @padding-base-space * 0;
+    padding-bottom: 100px;
+
+
+    .breakpoint-laptop-down ({
+      padding-top: 0px;
+    })
+  }
+}
+
+
+
+.content-wrapper {
+  min-height: 100%;
+}
+
+footer{
+  height: calc(76px - @padding-base-space-home - @padding-base-space-home);
+  margin-top: -76px;
+  padding-top: @padding-base-space-home;
+  padding-bottom: @padding-base-space-home;
+  .breakpoint-small-down({
+    height: auto;
+  });
+}
+
+header{
+  .breakpoint-small-down({
+    position: relative;
+  });
+}
+
+
 #layout-footer {
+    background-color: @footer-color;
     z-index: 100;
+    color: @footer-text-color;
+    font-size: 14px;
+    a{
+      color: @footer-text-color;
+      &:hover{
+        opacity: 0.7;
+      }
+    }
 
     .funding {
         display: flex;
@@ -150,95 +164,10 @@ ol.q {list-style-type: upper-roman; padding-left: 20px;}
         display: flex;
         flex: 1 0 auto;
         justify-content: center;
-        color: #707070;
+        color: @footer-text-color;
         white-space: nowrap;
-        font-size: 12px;
-        a{
-          color: #707070!important;
-        }
-    }
-    .social-networks {
-        flex: 1 0 auto;
-    }
-
-    .grey-background{
-      background: @footer-color;
-      font-size: 18px;
-    }
-
-    .footer-menu-container{
-      padding-top: @padding-base-space-home;
-      padding-bottom: @padding-base-space-home;
-
-      .col-xs-6.col-md-2{
-        .breakpoint-small-down({
-            margin-bottom: 50px;
-        });
-      }
-    }
-    .dark-background{
-      background: @black-color;
-      padding-top: @padding-base-space-home;
-      padding-bottom: @padding-base-space-home;
-      padding-left: @padding-base-space-home;
-      padding-right: @padding-base-space-home;
-      font-size: 13px;
-    }
-
-    a{
-      color: @green-color!important;
-      &.news-alert{
-        color: @footer-color!important;
-        font-weight: 600;
-        display: inline-flex;
-        vertical-align: middle;
-        padding: 15px 30px 12px 30px!important;
-        white-space: nowrap;
-        i{
-          margin-right: 6px;
-        }
-      }
-    }
-    a:hover{
-      opacity: 0.7;
-    }
-
-  .head{
-    color: @primary-color;
-    font-weight: 600;
-    margin-bottom: 2rem;
-  }
-
-  .footer-menu{
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-
-
-    a{
-      color: @primary-color!important;
-      line-height: 2em;
-      font-weight: 600;
-    }
-  }
-
-  .social-networks{
-    a{
-      color: @white-color!important;
-    }
-    a:hover{
-      color: @footer-color!important;
-    }
-
-    &.contacts{
-      a{
-        .breakpoint-small-down({
-          margin: 0 auto 40px auto;
-        });
-      }
 
     }
-  }
 }
 
 .bd-example {
@@ -267,12 +196,6 @@ ol.q {list-style-type: upper-roman; padding-left: 20px;}
         }
     }
 }
-
-.container-fluid {
-  padding-right: 0!important;
-  padding-left: 0!important;
-}
-
 .container-fluid {
     &.banner {
         margin-top: @margin-base-space-home * 3;
@@ -288,12 +211,16 @@ ol.q {list-style-type: upper-roman; padding-left: 20px;}
 }
 
 .twitter-widget {
-    max-height: 380px;
-    max-width: 787px;
+    max-height: 425px;
+    max-width: 813px;
     margin-left: 6px;
     overflow-y: scroll;
-    border: 1px solid #a5a7aa;
+    border: 1px solid #C7C7C7;
     border-radius: 4px;
+}
+
+.preview-webinar{
+  border-radius: 4px;
 }
 
 .subscribe-container {
@@ -304,27 +231,10 @@ ol.q {list-style-type: upper-roman; padding-left: 20px;}
 }
 
 .subscribe-items + .subscribe-items {
-    padding-top: 2rem;
+    padding-top: 1rem;
 }
 .subscribe-items {
-
-  h1{
-    padding-top: 0!important;
-    margin-top: 0!important;
-    .breakpoint-small-down({
-      margin-top: 2rem!important;
-    });
-  }
-
-  .col-xs-12{
-    margin-left: 2rem!important;
-    .breakpoint-small-down({
-      margin-left: 0!important;
-    });
-    a{
-      margin-right: 2rem!important;
-    }
-  }
+    
 }
 
 .content_static_list{
@@ -388,27 +298,6 @@ ol.q {list-style-type: upper-roman; padding-left: 20px;}
   margin: 10px 0px 10px 10!important;
 }
 
-.homepage_intro{
-  width: 100%;
-  justify-content: space-between;
-}
-.homepage_intro .cards div{
-  width: 85%;
-  .breakpoint-small-down({
-      margin: 30px auto;
-  });
-}
-
-.homepage_intro .cards h2{
-
-}
-
-.project_background{
-  background: url(../../../../storage/app/media/pensoft/about/image-about.jpg) bottom left no-repeat;
-  background-size: cover;
-  color: @white-color;
-}
-
 .project_background p{
   color: @white-color;
 }
@@ -427,317 +316,4 @@ footer .align-items-center{
     text-align: center!important;
   });
 }
-
-
-.btn-group-vertical>.btn-group:after, .btn-group-vertical>.btn-group:before, .btn-toolbar:after, .btn-toolbar:before, .clearfix:after, .clearfix:before, .container-fluid:after, .container-fluid:before, .container:after, .container:before, .dl-horizontal dd:after, .dl-horizontal dd:before, .form-horizontal .form-group:after, .form-horizontal .form-group:before, .modal-footer:after, .modal-footer:before, .nav:after, .nav:before, .navbar-collapse:after, .navbar-collapse:before, .navbar-header:after, .navbar-header:before, .navbar:after, .navbar:before, .pager:after, .pager:before, .panel-body:after, .panel-body:before, .row:after, .row:before {
-   display: unset!important;
-   content: unset!important;
-}
-
-.row{
-  margin-left: 0!important;
-  margin-right: 0!important;
-}
-
-
-.carousel-caption{
-  text-align: left!important;
-  left: 5%!important;
-  font-size: 70px!important;
-  text-shadow: none!important;
-
-  h3{
-    font-size: 70px!important;
-    font-weight: bold!important;
-  }
-
-  .letter{
-    box-shadow: none!important;
-    text-shadow: none!important;
-  }
-}
-
-.carousel-inner>.item{
-  width: 100%!important;
-  height: 100vh;
-  overflow: hidden;
-  &:first-of-type{
-    img{
-      .breakpoint-small-down({
-      object-position: -550px center;
-    });
-    }
-
-  }
-}
-
-.carousel-inner>.item>img{
-  width: 100%!important;
-
-  object-fit: cover;
-  min-width: 100%;
-  min-height: 100%;
-  height: 100vh;
-}
-
-.carousel-indicators{
-  display: none!important;
-  margin-right: 0!important;
-  margin-left: 0!important;
-  margin-bottom: 50px!important;
-  width: unset!important;
-  left: 90%!important;
-}
-
-.carousel-indicators li{
-  width: 18px!important;
-  height: 18px!important;
-  margin: 6px!important;
-  background-color: #fff!important;
-  border: none!important;
-  border-radius: 10px;
-  opacity: 0.5;
-}
-
-.carousel-indicators li.active{
-  border: none!important;
-}
-
-
-/* fade effect */
-
-
-.carousel-fade .carousel-inner .item {
-  opacity: 0;
-  transition-property: opacity;
-}
-
-.carousel-fade .carousel-inner .active {
-  opacity: 1;
-}
-
-.carousel-fade .carousel-inner .active.left,
-.carousel-fade .carousel-inner .active.right {
-  left: 0;
-  opacity: 0;
-  z-index: 1;
-}
-
-.carousel-fade .carousel-inner .next.left,
-.carousel-fade .carousel-inner .prev.right {
-  opacity: 1;
-}
-
-.carousel-fade .carousel-control {
-  z-index: 2;
-
-  .icon-prev, .icon-next{
-    .breakpoint-small-down({
-      display: none;
-    });
-  }
-}
-
-.carousel-control {
-
-  .icon-prev, .icon-next{
-    .breakpoint-small-down({
-      display: none!important;
-    });
-  }
-}
-
-.carousel-fade .icon{
-  .breakpoint-small-down({
-    display: none!important;
-  });
-}
-
-
-
-
-.home-background{
-  background: url('../../assets/images/mantis.png') bottom right no-repeat;
-  background-size: 30%;
-  .breakpoint-small-down({
-    background: url('../../assets/images/mantis.png') bottom right no-repeat;
-    background-size: 75%;
-  });
-}
-/*
-WHAT IS NEW IN 3.3: "Added transforms to improve carousel performance in modern browsers."
-now override the 3.3 new styles for modern browsers & apply opacity
-*/
-@media all and (transform-3d), (-webkit-transform-3d) {
-  .carousel-fade .carousel-inner > .item.next,
-  .carousel-fade .carousel-inner > .item.active.right {
-    opacity: 0;
-    -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
-  }
-  .carousel-fade .carousel-inner > .item.prev,
-  .carousel-fade .carousel-inner > .item.active.left {
-    opacity: 0;
-    -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
-  }
-  .carousel-fade .carousel-inner > .item.next.left,
-  .carousel-fade .carousel-inner > .item.prev.right,
-  .carousel-fade .carousel-inner > .item.active {
-    opacity: 1;
-    -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
-  }
-}
-
-
-
-
-.layout-home {
-  .wrapper {
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-    height: 100vh;
-
-    .navbar-transparent {
-      background-color: transparent !important;
-    }
-
-    .nav-link {
-      color: #fff !important;
-    }
-  }
-
-  .carousel{
-    height: 100vh;
-  }
-
-}
-
-.slogan_text{
-  color: @white-color;
-  max-width: 1024px;
-  font-size: 68px;
-  //margin-left: -20px;
-  position: absolute;
-  bottom: 100px;
-  line-height: 86px;
-  z-index: 99;
-  p{
-    font-size: 24px;
-    line-height: 35px;
-    color: @white-color;
-    margin-top: 20px;
-  }
-
-  span{
-    font-weight: bold;
-    //&:nth-of-type(2){
-    //  color: @green-color;
-    //}
-    //&:nth-of-type(3){
-    //  color: @blue-color;
-    //}
-    //&:nth-of-type(4){
-    //  color: @purple-color;
-    //}
-    //&:nth-of-type(5){
-    //  color: @yellow-color;
-    //}
-  }
-
-  .breakpoint-small-down({
-    color: #ffffff;
-    max-width: 1024px;
-    font-size: 43px;
-     margin-left: 0px;
-    position: absolute;
-    bottom: 25px;
-    line-height: 56px;
-    z-index: 99;
-  });
-}
-
-.scroll_down_arrow{
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.3) url(../../assets/images/arrow_down-1.svg) center no-repeat;
-  background-size: 30%;
-  width: 50px;
-  height: 50px;
-  margin-right: 3%;
-  position: absolute;
-  bottom: 50px;
-  right: 0;
-  z-index: 99;
-  display: flex;
-  justify-content: center;
-  vertical-align: middle;
-  .breakpoint-small-down({
-    display: none;
-  });
-  a, a:hover{
-    //color: #ffffff!important;
-    //font-size: 30px;
-    //text-align: center;
-    width: 100%;
-    //padding-top: 17px;
-    //text-decoration: none;
-    /* padding: 0px 27px; */
-
-  }
-
-}
-
-.anchors{
-  a{
-    color: @text-color-default;
-    background: url(../../assets/images/arrow_down.svg) right no-repeat;
-    background-size: 20px;
-    padding-right: 23px;
-    margin-right: 20px;
-    white-space: nowrap;
-  }
-  a:last-of-type{
-    margin-right: 0px;
-  }
-  a:hover{
-    opacity: 0.7;
-  }
-}
-
-.anchor {
-  position: relative;
-  padding-top: 60px;
-  margin-top: -60px;
-}
-
-h1, .h1{
-  font-size: 42px!important;
-}
-
-.subscribe-items h1{font-size: 36px!important;}
-
-.header-image h1{
-  font-size: 70px!important;
-  .breakpoint-small-down({
-    font-size: 41px!important;
-  });
-}
-
-.ss-result{
-  border: 1px solid #c1c1c1;
-  background: #f2f2f2;
-  padding: 20px;
-  margin-bottom: 20px;
-
-  .ss-result__badge{
-    font-weight: 600;
-  }
-
-  hr{
-    display: none;
-  }
-}
-
 
