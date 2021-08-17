@@ -89,9 +89,11 @@ robot_follow = "follow"
 								{% endfor %}
 							</div>
 						{% endif %}
+						{% if event.url %}
 						<div class="join mt-1">
-							<a href="{{'contact'|page}}" class="btn btn-primary">Join</a>
+							<a href="{{event.url}}" target="_blank" class="btn btn-primary">Join</a>
 						</div>
+						{% endif %}
 					</div>
 				</div>
 
@@ -122,9 +124,11 @@ robot_follow = "follow"
 							{% endfor %}
 						</div>
 						{% endif %}
+						{% if event.url %}
 						<div class="join mt-1">
-							<a href="{{'contact'|page}}" class="btn btn-primary">Join</a>
+							<a href="{{event.url}}" target="_blank" class="btn btn-primary">Join</a>
 						</div>
+						{% endif %}
 					</div>
 				</div>
 
@@ -155,9 +159,11 @@ robot_follow = "follow"
 							{% endfor %}
 						</div>
 						{% endif %}
+						{% if event.url %}
 						<div class="join mt-1">
-							<a href="{{'contact'|page}}" class="btn btn-primary">Join</a>
+							<a href="{{event.url}}" target="_blank" class="btn btn-primary">Join</a>
 						</div>
+						{% endif %}
 					</div>
 				</div>
 
@@ -176,7 +182,7 @@ robot_follow = "follow"
 						<span class="place">{{event.place}}</span>
 					</div>
 					<div class="col-xs">&nbsp;</div>
-					<div class="col-xs-md-3 col-xs-12 type"><span class="text mr-1">{{event.name}}</span><span class="red-spot"></span></div>
+					<div class="col-md-3 col-xs-12 type"><span class="text mr-1">{{event.name}}</span><span class="red-spot"></span></div>
 				</div>
 				<div class="row">
 					<div class="col-xs-12 event-content">
@@ -188,9 +194,12 @@ robot_follow = "follow"
 							{% endfor %}
 						</div>
 						{% endif %}
+
+						{% if event.url %}
 						<div class="join mt-1">
-							<a href="{{'contact'|page}}" class="btn btn-primary">Join</a>
+							<a href="{{event.url}}" target="_blank" class="btn btn-primary">Join</a>
 						</div>
+						{% endif %}
 					</div>
 				</div>
 
