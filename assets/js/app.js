@@ -48,6 +48,7 @@ $(document).ready(function() {
 		var $active, $content, $links = $(this).find('a');
 		var speed = "fast";
 		var activeTab = $(location.hash);
+		var width = $(window).width();
 		// If the location.hash matches one of the links, use that as the active tab.
 		// If no match is found, use the first link as the initial active tab.
 		$active = $($links.filter("[href=\'"+location.hash+"\']")[0] || $links[0]);
@@ -75,8 +76,7 @@ $(document).ready(function() {
 				$content.slideDown({
 					scrollTop: $content.offset().top - $('header').height()
 				}, speed);
-				var screenSize = getScreenSize();
-				if (screenSize.width < 800) {
+				if (width < 800) {
 					// scroll to element
 					$('html, body').animate({
 						scrollTop: $content.offset().top - $('header').height() + 300  // mobile
@@ -108,8 +108,7 @@ $(document).ready(function() {
 			$content.slideDown({
 				scrollTop: $content.offset().top - $('header').height()
 			}, speed);
-			var screenSize = getScreenSize();
-			if (screenSize.width < 800) {
+			if (width < 800) {
 				// scroll to element
 				$('html, body').animate({
 					scrollTop: $content.offset().top - $('header').height() + 300 // mobile
