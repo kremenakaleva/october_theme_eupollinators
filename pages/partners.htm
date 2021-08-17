@@ -20,16 +20,17 @@ function onStart(){
 
 
 	{% for partner in partners %}
-		<div class="col-xs-12 col-md-3 partner-item">
+		<div class="col-xs-12 col-md-4 partner-item">
 			<div class="row">
-				<div class="col-md-5 col-xs-12 start-md center-xs">
+				<div class="col-md-12 col-xs-12 center-md center-xs mb-1">
+
 					{% if partner.cover %}
-						<img src="{{partner.cover|resize(159, 150, { mode: 'crop' })}}">
+						<a href="{{partner.instituion_url}}" target="_blank"><img src="{{partner.cover|resize(159, 150, { mode: 'crop' })}}"></a>
 					{% else %}
 						<div class="no-logo-partner">Logo</div>
 					{% endif %}
 				</div>
-				<div class="col-md-7 col-xs-12"><h3>{{partner.instituion}}</h3>
+				<div class="col-md-12 col-xs-12"><h3><a href="{{partner.instituion_url}}" target="_blank">{{partner.instituion}}</a></h3>
 					{{partner.content|raw}}</div>
 			</div>
 		</div>

@@ -1,6 +1,6 @@
 url = "/agenda/:slug?|[a-zA-Z\-0-9]"
 layout = "default"
-title = "Agenda"
+title = "Programme"
 is_hidden = 0
 robot_index = "index"
 robot_follow = "follow"
@@ -37,7 +37,7 @@ robot_follow = "follow"
 ?>
 ==
 <div class="container">
-	<h1 class="display-1">Agenda</h1>
+	<h1 class="display-1">Programme</h1>
 
 	<div class="container tabs">
 		<div class="row mb-4">
@@ -83,7 +83,7 @@ robot_follow = "follow"
 					<div class="col-xs-12 event-content">
 						<div class="title">{{event.title}}</div>
 						{% if event.speakers.count() %}
-							<div class="speaeker">Speaker:
+							<div class="speaeker">Speakers:
 								{% for speaker in event.speakers %}
 									{{speaker.names}}{% if not loop.last %},{% endif %}
 								{% endfor %}
