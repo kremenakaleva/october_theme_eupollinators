@@ -11,7 +11,15 @@ robot_follow = "follow"
 	use Carbon\Carbon;
 
 	function onStart(){
-		$events = Records::events();
+		$events = Db::table('christophheich_calendar_entries')
+			->select(Db::raw('christophheich_calendar_entries.*, string_agg(pensoft_cardprofiles_items.names, \', \') AS speakers, pensoft_calendarcardsextension_eventtypes.name'))
+			->join('pensoft_cardprofiles_entries', 'pensoft_cardprofiles_entries.entry_id', '=', 'christophheich_calendar_entries.id')
+			->join('pensoft_cardprofiles_items', 'pensoft_cardprofiles_items.id', '=', 'pensoft_cardprofiles_entries.profiles_id')
+			->join('pensoft_calendarcardsextension_eventtypes', 'christophheich_calendar_entries.type', '=', DB::raw('pensoft_calendarcardsextension_eventtypes.id::varchar'))
+			->groupByRaw('christophheich_calendar_entries.id, pensoft_calendarcardsextension_eventtypes.name')
+			->orderBy('christophheich_calendar_entries.start', 'asc')
+			->get();
+
 		$day1 = '2021-09-27';
 		$this['day1_events'] = $events->filter(function ($item) use ($day1) {
 			return (Carbon::parse( data_get($item, 'start'))->format('Y-m-d') >= $day1 && Carbon::parse( data_get($item, 'start'))->format('Y-m-d') <= $day1);
@@ -82,12 +90,8 @@ robot_follow = "follow"
 				<div class="row">
 					<div class="col-xs-12 event-content">
 						<div class="title">{{event.title}}</div>
-						{% if event.speakers.count() %}
-							<div class="speaeker">Speakers:
-								{% for speaker in event.speakers %}
-									{{speaker.names}}{% if not loop.last %},{% endif %}
-								{% endfor %}
-							</div>
+						{% if event.speakers %}
+							<div class="speaeker">Speakers: {{event.speakers}} </div>
 						{% endif %}
 						{% if event.url %}
 						<div class="join mt-1">
@@ -117,12 +121,8 @@ robot_follow = "follow"
 				<div class="row">
 					<div class="col-xs-12 event-content">
 						<div class="title">{{event.title}}</div>
-						{% if event.speakers.count() %}
-						<div class="speaeker">Speakers:
-							{% for speaker in event.speakers %}
-							{{speaker.names}}{% if not loop.last %},{% endif %}
-							{% endfor %}
-						</div>
+						{% if event.speakers %}
+						<div class="speaeker">Speakers: {{event.speakers}} </div>
 						{% endif %}
 						{% if event.url %}
 						<div class="join mt-1">
@@ -152,12 +152,8 @@ robot_follow = "follow"
 				<div class="row">
 					<div class="col-xs-12 event-content">
 						<div class="title">{{event.title}}</div>
-						{% if event.speakers.count() %}
-						<div class="speaeker">Speakers:
-							{% for speaker in event.speakers %}
-							{{speaker.names}}{% if not loop.last %},{% endif %}
-							{% endfor %}
-						</div>
+						{% if event.speakers %}
+						<div class="speaeker">Speakers: {{event.speakers}} </div>
 						{% endif %}
 						{% if event.url %}
 						<div class="join mt-1">
@@ -187,12 +183,8 @@ robot_follow = "follow"
 				<div class="row">
 					<div class="col-xs-12 event-content">
 						<div class="title">{{event.title}}</div>
-						{% if event.speakers.count() %}
-						<div class="speaeker">Speakers:
-							{% for speaker in event.speakers %}
-							{{speaker.names}}{% if not loop.last %},{% endif %}
-							{% endfor %}
-						</div>
+						{% if event.speakers %}
+						<div class="speaeker">Speakers: {{event.speakers}} </div>
 						{% endif %}
 
 						{% if event.url %}
