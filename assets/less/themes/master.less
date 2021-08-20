@@ -96,6 +96,48 @@ ol.q {list-style-type: upper-roman; padding-left: 20px;}
     });
 }
 
+
+@media (min-width:2300px) {
+  .header-image {
+    overflow: hidden;
+    position: relative;
+    align-items: flex-end;
+    justify-content: center;
+    display: flex;
+    color: @white-color;
+    background: url('../../assets/images/EU-Pollinators-Initiative-other.jpg');
+    height: 438px;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    background-position: center;
+    //background-position: bottom center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+}
+
+
+@media only screen and (width: 2736px) and (height: 1824px)  {
+  .header-image {
+    overflow: hidden;
+    position: relative;
+    align-items: flex-end;
+    justify-content: center;
+    display: flex;
+    color: @white-color;
+    background: url('../../assets/images/EU-Pollinators-Initiative-other.jpg');
+    height: 438px;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    background-position: -620px bottom!important;
+    //background-position: bottom center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+}
+
 #layout-content {
     padding-top: @padding-base-space * 0;
     padding-bottom: 100px;
@@ -136,6 +178,15 @@ footer{
   });
 }
 
+@media (max-width:1360px) {
+  footer{
+    height: auto;
+    margin-top: -116px;
+    padding-top: @padding-base-space-home;
+    padding-bottom: @padding-base-space-home;
+  }
+}
+
 header{
   .breakpoint-small-down({
     position: relative;
@@ -161,11 +212,21 @@ header{
         color: @footer-text-color;
     }
     .powered-by {
-        display: flex;
-        flex: 1 0 auto;
-        justify-content: center;
+        //display: flex;
+        //flex: 1 0 auto;
         color: @footer-text-color;
-        white-space: nowrap;
+        //white-space: nowrap;
+      .breakpoint-small-down({
+        //white-space: unset;
+      });
+
+      span{
+        .breakpoint-small-down({
+          display: block;
+          width: 100vw;
+        });
+
+      }
 
     }
 }

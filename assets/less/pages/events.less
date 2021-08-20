@@ -33,6 +33,10 @@
     });
   }
 
+  .info p{
+    color: @h3-heading-color!important;
+  }
+
 
   .event-item{
     margin-bottom: 40px;
@@ -46,8 +50,10 @@
     line-height: 33px;
     padding: 20px 40px;
     white-space: nowrap;
+    max-width: fit-content;
     .breakpoint-small-down({
       white-space: unset;
+      max-width: unset;
     });
 
 
@@ -166,12 +172,16 @@
       max-width: 100%;
     });
 
+    .image-container{
+      min-width: 210px;
+    }
+
     .col-xs-12{
       padding: 0!important;
     }
     .title, .title a{
       font-size: 24px;
-      white-space: nowrap;
+      min-width: 100%;
       font-weight: 600;
       color: @h3-heading-color!important;
     }

@@ -253,7 +253,7 @@ function animateNumbers() {
 
 
 function hideMenuMobileOnScropll() {
-	if (width < 900 && $('.content-wrapper').hasClass('home')) {
+	if (width < 1030 && $('.content-wrapper').hasClass('home')) {
 		var scroll = $(window).scrollTop();
 		if(scroll > 50){
 			$('#menuToggle').fadeOut();
@@ -263,5 +263,15 @@ function hideMenuMobileOnScropll() {
 
 	}
 }
+
+function redirectAndActivate(elem, url, tab_class){
+	$(".tabs a.join").each(function() {
+		this.href = window.location.hash;
+	});
+
+	window.open(url, '_blank');
+	location.reload();
+}
+
 
 init()
