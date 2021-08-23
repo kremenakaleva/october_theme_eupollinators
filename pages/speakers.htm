@@ -87,15 +87,13 @@ url = "/speakers/:slug?|[a-zA-Z\-0-9]"
 							</a>
 						</div>
 						<div class="col-md-7 col-xs-12">
-							<div class="row middle-xs">
-								<div class="col-xs title"><a href="{{'speakers'|page}}/{{speaker.slug}}">{{speaker.names}}</a></div>
-								<div class="col-xs keynote end-xs">{% if speaker.keynote %}Keynote{% endif %}</div>
-							</div>
+								<span class="title"><a href="{{'speakers'|page}}/{{speaker.slug}}">{{speaker.names}}</a></span>
+								<span class="keynote">{% if speaker.keynote %}Keynote{% endif %}</span>
 
 							<div class="speaker-department">{{speaker.department}}</div>
 
 							{% if speaker.participations.count() %}
-							<div class="speaeker-pannels">Sessions:
+							<div class="speaeker-pannels"><b>Sessions</b>:
 								<ul>
 								{% for event in speaker.participations %}
 									<a href="{{'events'|page}}#september{{event.start|date("d")}}">{{event.title}}</a></li>
@@ -134,15 +132,13 @@ url = "/speakers/:slug?|[a-zA-Z\-0-9]"
 							</a>
 						</div>
 						<div class="col-md-7 col-xs-12">
-							<div class="row middle-xs">
-								<div class="col-xs title"><a href="{{'speakers'|page}}/{{speaker.slug}}">{{speaker.names}}</a></div>
-								<div class="col-xs keynote end-xs">{% if speaker.keynote %}Keynote{% endif %}</div>
-							</div>
+							<span class="title"><a href="{{'speakers'|page}}/{{speaker.slug}}">{{speaker.names}}</a></span>
+							<span class="keynote">{% if speaker.keynote %}Keynote{% endif %}</span>
 
 							<div class="speaker-department">{{speaker.department}}</div>
 
 							{% if speaker.participations.count() %}
-							<div class="speaeker-pannels">Pannels:
+							<div class="speaeker-pannels"><b>Sessions</b>:
 								<ul>
 									{% for event in speaker.participations %}
 									<a href="{{'events'|page}}#september{{event.start|date("d")}}">{{event.title}}</a></li>
@@ -181,15 +177,13 @@ url = "/speakers/:slug?|[a-zA-Z\-0-9]"
 							</a>
 						</div>
 						<div class="col-md-7 col-xs-12">
-							<div class="row middle-xs">
-								<div class="col-xs title"><a href="{{'speakers'|page}}/{{speaker.slug}}">{{speaker.names}}</a></div>
-								<div class="col-xs keynote end-xs">{% if speaker.keynote %}Keynote{% endif %}</div>
-							</div>
+							<span class="title"><a href="{{'speakers'|page}}/{{speaker.slug}}">{{speaker.names}}</a></span>
+							<span class="keynote">{% if speaker.keynote %}Keynote{% endif %}</span>
 
 							<div class="speaker-department">{{speaker.department}}</div>
 
 							{% if speaker.participations.count() %}
-							<div class="speaeker-pannels">Pannels:
+							<div class="speaeker-pannels"><b>Sessions</b>:
 								<ul>
 									{% for event in speaker.participations %}
 									<a href="{{'events'|page}}#september{{event.start|date("d")}}">{{event.title}}</a></li>
@@ -228,15 +222,13 @@ url = "/speakers/:slug?|[a-zA-Z\-0-9]"
 							</a>
 						</div>
 						<div class="col-md-7 col-xs-12">
-							<div class="row middle-xs">
-								<div class="col-xs title"><a href="{{'speakers'|page}}/{{speaker.slug}}">{{speaker.names}}</a></div>
-								<div class="col-xs keynote end-xs">{% if speaker.keynote %}Keynote{% endif %}</div>
-							</div>
+							<span class="title"><a href="{{'speakers'|page}}/{{speaker.slug}}">{{speaker.names}}</a></span>
+							<span class="keynote">{% if speaker.keynote %}Keynote{% endif %}</span>
 
 							<div class="speaker-department">{{speaker.department}}</div>
 
 							{% if speaker.participations.count() %}
-							<div class="speaeker-pannels">Pannels:
+							<div class="speaeker-pannels"><b>Sessions</b>:
 								<ul>
 									{% for event in speaker.participations %}
 									<a href="{{'events'|page}}#september{{event.start|date("d")}}">{{event.title}}</a></li>
