@@ -11,14 +11,7 @@ robot_follow = "follow"
 	use Carbon\Carbon;
 
 	function onStart(){
-		$events = Db::table('christophheich_calendar_entries')
-			->select(Db::raw('christophheich_calendar_entries.*, string_agg(pensoft_cardprofiles_items.names, \', \') AS speakers, pensoft_calendarcardsextension_eventtypes.name'))
-			->join('pensoft_cardprofiles_entries', 'pensoft_cardprofiles_entries.entry_id', '=', 'christophheich_calendar_entries.id')
-			->join('pensoft_cardprofiles_items', 'pensoft_cardprofiles_items.id', '=', 'pensoft_cardprofiles_entries.profiles_id')
-			->join('pensoft_calendarcardsextension_eventtypes', 'christophheich_calendar_entries.type', '=', DB::raw('pensoft_calendarcardsextension_eventtypes.id::varchar'))
-			->groupByRaw('christophheich_calendar_entries.id, pensoft_calendarcardsextension_eventtypes.name')
-			->orderBy('christophheich_calendar_entries.start', 'asc')
-			->get();
+		$events = Records::events();
 
 		$day1 = '2021-09-27';
 		$this['day1_events'] = $events->filter(function ($item) use ($day1) {
@@ -102,9 +95,32 @@ robot_follow = "follow"
 							<a href="javascript:void(0);" onclick="redirectAndActivate(this, '{{event.url}}', 'day1');" class="btn btn-primary join">Join</a>
 						</div>
 						{% endif %}
-					</div>
-				</div>
 
+						{% if event.subsections.count() %}
+						<div class="row between-xs subsections">
+							{% for section in event.subsections %}
+								<div class="col-md-6 col-xs-12 section-item">
+									<div class="title">{{section.title}}</div>
+									{% if section.speakers %}
+									<div class="info section-desc">{{section.description|raw}}</div>
+									<div class="speaeker"><b>Speakers:</b> {{section.speakers}} </div>
+									{% endif %}
+
+									Moderator:
+
+									{% if section.link %}
+									<div class="join mt-1">
+										<a href="javascript:void(0);" onclick="redirectAndActivate(this, '{{section.link}}', 'day1');" class="btn btn-primary join">Join</a>
+									</div>
+									{% endif %}
+								</div>
+							{% endfor  %}
+						</div>
+						{% endif %}
+
+					</div>
+
+				</div>
 			</div>
 			{% endfor %}
 		</div>
