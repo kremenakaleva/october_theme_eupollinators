@@ -11,7 +11,22 @@ robot_follow = "follow"
 	use Carbon\Carbon;
 
 	function onStart(){
-		$events = Records::events();
+			$entries = Db::table('christophheich_calendar_entries')
+				->select(Db::raw('christophheich_calendar_entries.*, string_agg(pensoft_cardprofiles_items.names, \', \') AS speakers, pensoft_calendarcardsextension_eventtypes.name'))
+				->join('pensoft_cardprofiles_entries', 'pensoft_cardprofiles_entries.entry_id', '=', 'christophheich_calendar_entries.id')
+				->join('pensoft_cardprofiles_items', 'pensoft_cardprofiles_items.id', '=', 'pensoft_cardprofiles_entries.profiles_id')
+				->join('pensoft_calendarcardsextension_eventtypes', 'christophheich_calendar_entries.type', '=', DB::raw('pensoft_calendarcardsextension_eventtypes.id::varchar'))
+				->groupByRaw('christophheich_calendar_entries.id, pensoft_calendarcardsextension_eventtypes.name')
+				->orderBy('christophheich_calendar_entries.start', 'asc')
+				->where('christophheich_calendar_entries.deleted_at', '=', null)
+				->get();
+
+			foreach ($entries as $entry){
+				$entry->subsections = Records::subsections($entry->id);
+			}
+
+			//$events = Records::events();
+			$events = $entries;
 
 		$day1 = '2021-09-27';
 		$this['day1_events'] = $events->filter(function ($item) use ($day1) {
