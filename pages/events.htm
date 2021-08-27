@@ -4,10 +4,9 @@ title = "Programme"
 is_hidden = 0
 robot_index = "index"
 robot_follow = "follow"
-
 ==
 <?php
-	use Pensoft\Calendarcardsextension\Models\Records;
+use Pensoft\Calendarcardsextension\Models\Records;
 	use Carbon\Carbon;
 
 	function onStart(){
@@ -34,7 +33,6 @@ robot_follow = "follow"
 		});
 
 	}
-
 ?>
 ==
 <div class="container">
@@ -106,7 +104,6 @@ robot_follow = "follow"
 									<div class="speaeker"><b>Speakers:</b> {{section.speakers}} </div>
 									{% endif %}
 
-									Moderator:
 
 									{% if section.link %}
 									<div class="join mt-1">
@@ -152,6 +149,26 @@ robot_follow = "follow"
 							<a href="javascript:void(0);" onclick="redirectAndActivate(this, '{{event.url}}', 'day2');" class="btn btn-primary join">Join</a>
 						</div>
 						{% endif %}
+						{% if event.subsections.count() %}
+						<div class="row between-xs subsections">
+							{% for section in event.subsections %}
+								<div class="col-md-6 col-xs-12 section-item">
+									<div class="title">{{section.title}}</div>
+									{% if section.speakers %}
+									<div class="info section-desc">{{section.description|raw}}</div>
+									<div class="speaeker"><b>Speakers:</b> {{section.speakers}} </div>
+									{% endif %}
+
+
+									{% if section.link %}
+									<div class="join mt-1">
+										<a href="javascript:void(0);" onclick="redirectAndActivate(this, '{{section.link}}', 'day1');" class="btn btn-primary join">Join</a>
+									</div>
+									{% endif %}
+								</div>
+							{% endfor  %}
+						</div>
+						{% endif %}
 					</div>
 				</div>
 
@@ -184,6 +201,26 @@ robot_follow = "follow"
 						{% if event.url %}
 						<div class="join mt-1">
 							<a href="javascript:void(0);" onclick="redirectAndActivate(this, '{{event.url}}', 'day3');" class="btn btn-primary join">Join</a>
+						</div>
+						{% endif %}
+						{% if event.subsections.count() %}
+						<div class="row between-xs subsections">
+							{% for section in event.subsections %}
+								<div class="col-md-6 col-xs-12 section-item">
+									<div class="title">{{section.title}}</div>
+									{% if section.speakers %}
+									<div class="info section-desc">{{section.description|raw}}</div>
+									<div class="speaeker"><b>Speakers:</b> {{section.speakers}} </div>
+									{% endif %}
+
+
+									{% if section.link %}
+									<div class="join mt-1">
+										<a href="javascript:void(0);" onclick="redirectAndActivate(this, '{{section.link}}', 'day1');" class="btn btn-primary join">Join</a>
+									</div>
+									{% endif %}
+								</div>
+							{% endfor  %}
 						</div>
 						{% endif %}
 					</div>
@@ -219,6 +256,26 @@ robot_follow = "follow"
 						{% if event.url %}
 						<div class="join mt-1">
 							<a href="javascript:void(0);" onclick="redirectAndActivate(this, '{{event.url}}', 'day4');" class="btn btn-primary join">Join</a>
+						</div>
+						{% endif %}
+						{% if event.subsections.count() %}
+						<div class="row between-xs subsections">
+							{% for section in event.subsections %}
+								<div class="col-md-6 col-xs-12 section-item">
+									<div class="title">{{section.title}}</div>
+									{% if section.speakers %}
+									<div class="info section-desc">{{section.description|raw}}</div>
+									<div class="speaeker"><b>Speakers:</b> {{section.speakers}} </div>
+									{% endif %}
+
+
+									{% if section.link %}
+									<div class="join mt-1">
+										<a href="javascript:void(0);" onclick="redirectAndActivate(this, '{{section.link}}', 'day1');" class="btn btn-primary join">Join</a>
+									</div>
+									{% endif %}
+								</div>
+							{% endfor  %}
 						</div>
 						{% endif %}
 					</div>
