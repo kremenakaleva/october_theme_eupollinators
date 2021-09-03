@@ -1,9 +1,9 @@
-title = "Speakers"
-layout = "default"
 url = "/speakers/:slug?|[a-zA-Z\-0-9]"
+layout = "default"
+title = "Speakers"
 ==
 <?php
-	use Pensoft\Calendarcardsextension\Models\Records;
+use Pensoft\Calendarcardsextension\Models\Records;
 	use Pensoft\Cardprofiles\Models\Profiles;
 	use Carbon\Carbon;
 
@@ -26,7 +26,6 @@ url = "/speakers/:slug?|[a-zA-Z\-0-9]"
 
 
 	}
-
 ?>
 ==
 {% if slug %}
