@@ -33,14 +33,14 @@ url = "/speakers/:slug?|[a-zA-Z\-0-9]"
 <div class="container speaker-detailed-page">
 	<h1 class="mb-4">Speakers</h1>
 	<div class="row">
-		<div class="col-md-2 col-xs-12 start-md center-xs image-container">
+		<div class="col-md-4 col-xs-12 start-md center-xs image-container">
 			{% if profile.avatar.getPath() %}
-			<img src="{{profile.avatar|resize(210,276, { mode: 'crop' })}}">
+			<img src="{{profile.avatar|resize(517,557, { mode: 'crop' })}}" width="517" height="557">
 			{% else %}
 			<div class="no-logo-speaker"></div>
 			{% endif %}
 		</div>
-		<div class="col-md-9 col-xs-12">
+		<div class="col-md-8 col-xs-12">
 			<div class="title"><h2>{{profile.names}}</h2></div>
 			<div class="info">{{profile.content|raw}}</div>
 			<div class="speaker-department">
@@ -52,16 +52,17 @@ url = "/speakers/:slug?|[a-zA-Z\-0-9]"
 				{{profile.position}}
 			</div>
 
+			<a href="/speakers" class="btn btn-primary">See all speakers</a>
+
 		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-3 col-xs-12 start-md"><a href="/speakers" class="btn btn-primary">See all speakers</a> </div>
-		<div class="col-xs"></div>
 	</div>
 </div>
 {% else %}
 <div class="container">
-	<h1 class="mb-4">Speakers</h1>
+	<h1 class="mb-2">Speakers</h1>
+
+	<p>Click on the name or picture of the speaker to view their individual profile.</p>
+	<p>&nbsp;</p>
 
 	<div class="row">
 
@@ -73,36 +74,37 @@ url = "/speakers/:slug?|[a-zA-Z\-0-9]"
 				</div>
 				<div class="col-xs">&nbsp;</div>
 			</div>
-			<div class="row between-xs speakers-group-item">
-			{% for speaker in day1_speakers %}
-				<div class="col-md-6 col-xs-12 speaker-content">
-					<div class="row">
-						<div class="col-md-4 col-xs-12 start-md center-xs image-container">
+			<div class="row speakers-group-item">
+			{% for s, speaker in day1_speakers %}
+				<div class="speaker-content">
+						{% if speaker.keynote %}<span class="keynote">Keynote</span>{% endif %}
+						<div class="col-md-12 col-xs-12 start-md center-xs image-container">
 							<a href="{{'speakers'|page}}/{{speaker.slug}}">
 							{% if speaker.add_data.avatar.getPath() %}
-								<img src="{{speaker.add_data.avatar|resize(210,276, { mode: 'crop' })}}">
+								<img src="{{speaker.add_data.avatar|resize(283, 306, { mode: 'crop' })}}" width="283" height="306">
 							{% else %}
 								<div class="no-logo-speaker"></div>
 							{% endif %}
 							</a>
 						</div>
-						<div class="col-md-7 col-xs-12">
+						<div class="col-md-12 col-xs-12 info-container">
 								<span class="title"><a href="{{'speakers'|page}}/{{speaker.slug}}">{{speaker.names}}</a></span>
-								<span class="keynote">{% if speaker.keynote %}Keynote{% endif %}</span>
 
 							<div class="speaker-department">{{speaker.department}}</div>
 
 							{% if speaker.participations.count() %}
 							<div class="speaeker-pannels"><b>Sessions</b>:
 								<ul>
-								{% for event in speaker.participations %}
-									<a href="{{'events'|page}}#september{{event.start|date("d")}}">{{event.title}}</a></li>
+								{% for key, event in speaker.participations %}
+									<a href="{{'events'|page}}#september{{event.start|date("d")}}" class="pannel_27_{{s}}_{{key}}">{{event.title}}</a>
+									<!--{% if speaker.participations.count() > 1 and key == 0 %}-->
+										<!--<a class="expand" href="javascript:void(0);" onclick="showMore(this);">+</a>-->
+									<!--{% endif %}-->
 								{% endfor %}
 								</ul>
 							</div>
 							{% endif %}
 						</div>
-					</div>
 				</div>
 			{% endfor %}
 			</div>
@@ -118,35 +120,36 @@ url = "/speakers/:slug?|[a-zA-Z\-0-9]"
 				</div>
 				<div class="col-xs">&nbsp;</div>
 			</div>
-			<div class="row between-xs speakers-group-item">
-				{% for speaker in day2_speakers %}
-				<div class="col-md-6 col-xs-12 speaker-content">
-					<div class="row">
-						<div class="col-md-4 col-xs-12 start-md center-xs image-container">
-							<a href="{{'speakers'|page}}/{{speaker.slug}}">
-								{% if speaker.add_data.avatar.getPath() %}
-								<img src="{{speaker.add_data.avatar|resize(210,276, { mode: 'crop' })}}">
-								{% else %}
-								<div class="no-logo-speaker"></div>
-								{% endif %}
-							</a>
-						</div>
-						<div class="col-md-7 col-xs-12">
-							<span class="title"><a href="{{'speakers'|page}}/{{speaker.slug}}">{{speaker.names}}</a></span>
-							<span class="keynote">{% if speaker.keynote %}Keynote{% endif %}</span>
-
-							<div class="speaker-department">{{speaker.department}}</div>
-
-							{% if speaker.participations.count() %}
-							<div class="speaeker-pannels"><b>Sessions</b>:
-								<ul>
-									{% for event in speaker.participations %}
-									<a href="{{'events'|page}}#september{{event.start|date("d")}}">{{event.title}}</a></li>
-									{% endfor %}
-								</ul>
-							</div>
+			<div class="row speakers-group-item">
+				{% for s, speaker in day2_speakers %}
+				<div class="speaker-content">
+					{% if speaker.keynote %}<span class="keynote">Keynote</span>{% endif %}
+					<div class="col-md-12 col-xs-12 start-md center-xs image-container">
+						<a href="{{'speakers'|page}}/{{speaker.slug}}">
+							{% if speaker.add_data.avatar.getPath() %}
+							<img src="{{speaker.add_data.avatar|resize(283, 306, { mode: 'crop' })}}" width="283" height="306">
+							{% else %}
+							<div class="no-logo-speaker"></div>
 							{% endif %}
+						</a>
+					</div>
+					<div class="col-md-12 col-xs-12 info-container">
+						<span class="title"><a href="{{'speakers'|page}}/{{speaker.slug}}">{{speaker.names}}</a></span>
+
+						<div class="speaker-department">{{speaker.department}}</div>
+
+						{% if speaker.participations.count() %}
+						<div class="speaeker-pannels"><b>Sessions</b>:
+							<ul>
+								{% for key, event in speaker.participations %}
+								<a href="{{'events'|page}}#september{{event.start|date("d")}}" class="pannel_28_{{s}}_{{key}}">{{event.title}}</a>
+								<!--{% if speaker.participations.count() > 1 and key == 0 %}-->
+								<!--<a class="expand" href="javascript:void(0);" onclick="showMore(this);">+</a>-->
+								<!--{% endif %}-->
+								{% endfor %}
+							</ul>
 						</div>
+						{% endif %}
 					</div>
 				</div>
 				{% endfor %}
@@ -163,35 +166,36 @@ url = "/speakers/:slug?|[a-zA-Z\-0-9]"
 				</div>
 				<div class="col-xs">&nbsp;</div>
 			</div>
-			<div class="row between-xs speakers-group-item">
-				{% for speaker in day3_speakers %}
-				<div class="col-md-6 col-xs-12 speaker-content">
-					<div class="row">
-						<div class="col-md-4 col-xs-12 start-md center-xs image-container">
-							<a href="{{'speakers'|page}}/{{speaker.slug}}">
-								{% if speaker.add_data.avatar.getPath() %}
-								<img src="{{speaker.add_data.avatar|resize(210,276, { mode: 'crop' })}}">
-								{% else %}
-								<div class="no-logo-speaker"></div>
-								{% endif %}
-							</a>
-						</div>
-						<div class="col-md-7 col-xs-12">
-							<span class="title"><a href="{{'speakers'|page}}/{{speaker.slug}}">{{speaker.names}}</a></span>
-							<span class="keynote">{% if speaker.keynote %}Keynote{% endif %}</span>
-
-							<div class="speaker-department">{{speaker.department}}</div>
-
-							{% if speaker.participations.count() %}
-							<div class="speaeker-pannels"><b>Sessions</b>:
-								<ul>
-									{% for event in speaker.participations %}
-									<a href="{{'events'|page}}#september{{event.start|date("d")}}">{{event.title}}</a></li>
-									{% endfor %}
-								</ul>
-							</div>
+			<div class="row speakers-group-item">
+				{% for s, speaker in day3_speakers %}
+				<div class="speaker-content">
+					{% if speaker.keynote %}<span class="keynote">Keynote</span>{% endif %}
+					<div class="col-md-12 col-xs-12 start-md center-xs image-container">
+						<a href="{{'speakers'|page}}/{{speaker.slug}}">
+							{% if speaker.add_data.avatar.getPath() %}
+							<img src="{{speaker.add_data.avatar|resize(283, 306, { mode: 'crop' })}}" width="283" height="306">
+							{% else %}
+							<div class="no-logo-speaker"></div>
 							{% endif %}
+						</a>
+					</div>
+					<div class="col-md-12 col-xs-12 info-container">
+						<span class="title"><a href="{{'speakers'|page}}/{{speaker.slug}}">{{speaker.names}}</a></span>
+
+						<div class="speaker-department">{{speaker.department}}</div>
+
+						{% if speaker.participations.count() %}
+						<div class="speaeker-pannels"><b>Sessions</b>:
+							<ul>
+								{% for key, event in speaker.participations %}
+								<a href="{{'events'|page}}#september{{event.start|date("d")}}" class="pannel_29_{{s}}_{{key}}">{{event.title}}</a>
+								<!--{% if speaker.participations.count() > 1 and key == 0 %}-->
+								<!--<a class="expand" href="javascript:void(0);" onclick="showMore(this);">+</a>-->
+								<!--{% endif %}-->
+								{% endfor %}
+							</ul>
 						</div>
+						{% endif %}
 					</div>
 				</div>
 				{% endfor %}
@@ -208,37 +212,38 @@ url = "/speakers/:slug?|[a-zA-Z\-0-9]"
 				</div>
 				<div class="col-xs">&nbsp;</div>
 			</div>
-			<div class="row between-xs speakers-group-item">
-				{% for speaker in day4_speakers %}
-				<div class="col-md-6 col-xs-12 speaker-content">
-					<div class="row">
-						<div class="col-md-4 col-xs-12 start-md center-xs image-container">
-							<a href="{{'speakers'|page}}/{{speaker.slug}}">
-								{% if speaker.add_data.avatar.getPath() %}
-								<img src="{{speaker.add_data.avatar|resize(210,276, { mode: 'crop' })}}">
-								{% else %}
-								<div class="no-logo-speaker"></div>
-								{% endif %}
-							</a>
-						</div>
-						<div class="col-md-7 col-xs-12">
-							<span class="title"><a href="{{'speakers'|page}}/{{speaker.slug}}">{{speaker.names}}</a></span>
-							<span class="keynote">{% if speaker.keynote %}Keynote{% endif %}</span>
-
-							<div class="speaker-department">{{speaker.department}}</div>
-
-							{% if speaker.participations.count() %}
-							<div class="speaeker-pannels"><b>Sessions</b>:
-								<ul>
-									{% for event in speaker.participations %}
-									<a href="{{'events'|page}}#september{{event.start|date("d")}}">{{event.title}}</a></li>
-									{% endfor %}
-								</ul>
-							</div>
+			<div class="row speakers-group-item">
+				{% for s, speaker in day4_speakers %}
+				<div class="speaker-content">
+					{% if speaker.keynote %}<span class="keynote">Keynote</span>{% endif %}
+					<div class="col-md-12 col-xs-12 start-md center-xs image-container">
+						<a href="{{'speakers'|page}}/{{speaker.slug}}">
+							{% if speaker.add_data.avatar.getPath() %}
+							<img src="{{speaker.add_data.avatar|resize(283, 306, { mode: 'crop' })}}" width="283" height="306">
+							{% else %}
+							<div class="no-logo-speaker"></div>
 							{% endif %}
-						</div>
+						</a>
 					</div>
-				</div>
+					<div class="col-md-12 col-xs-12 info-container">
+						<span class="title"><a href="{{'speakers'|page}}/{{speaker.slug}}">{{speaker.names}}</a></span>
+
+						<div class="speaker-department">{{speaker.department}}</div>
+
+						{% if speaker.participations.count() %}
+						<div class="speaeker-pannels"><b>Sessions</b>:
+							<ul>
+								{% for key, event in speaker.participations %}
+								<a href="{{'events'|page}}#september{{event.start|date("d")}}" class="pannel_30_{{s}}_{{key}}">{{event.title}}</a>
+								<!--{% if speaker.participations.count() > 1 and key == 0 %}-->
+								<!--<a class="expand" href="javascript:void(0);" onclick="showMore(this);">+</a>-->
+								<!--{% endif %}-->
+								{% endfor %}
+							</ul>
+						</div>
+						{% endif %}
+					</div>
+				</div>>
 				{% endfor %}
 			</div>
 		</div>

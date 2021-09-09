@@ -48,6 +48,10 @@ robot_follow = "follow"
 			return (Carbon::parse( data_get($item, 'start'))->format('Y-m-d') >= $day4 && Carbon::parse( data_get($item, 'start'))->format('Y-m-d') <= $day4);
 		});
 
+		$this['satellite_events'] = $events->filter(function ($item) {
+			return $item->type == 18;
+		});
+
 	}
 
 ?>
@@ -77,15 +81,20 @@ robot_follow = "follow"
 					Day 4
 				</a>
 			</div>
+			<div class="col-md-2 col-xs-12">
+				<a href="#SatelliteEvents" title="Satellite events" class="btn btn-primary satellite_events">
+					Satellite events
+				</a>
+			</div>
 		</div>
 
 
 
 
 		<!--tabs content	-->
-		<div class="row" id="september27">
+		<div class="row between-md around-xs" id="september27">
 			{% for event in day1_events %}
-			<div class="col-xs-12 event-item">
+			<div class="col-md-12 col-xs-12 event-item">
 				<div class="row middle-xs">
 					<div class="col-md-8 col-xs-12 event-time-date-place">
 						<span class="date">{{event.start|date("j F Y")}}</span>
@@ -234,6 +243,41 @@ robot_follow = "follow"
 						{% if event.url %}
 						<div class="join mt-1">
 							<a href="javascript:void(0);" onclick="redirectAndActivate(this, '{{event.url}}', 'day4');" class="btn btn-primary join">Join</a>
+						</div>
+						{% endif %}
+					</div>
+				</div>
+
+			</div>
+			{% endfor %}
+		</div>
+
+
+		<div class="row" id="SatelliteEvents">
+			{% for event in satellite_events %}
+			<div class="col-xs-12 event-item">
+				<div class="row middle-xs">
+					<div class="col-md-8 col-xs-12 event-time-date-place">
+						<span class="date">{{event.start|date("j F Y")}}</span>
+						<span class="time">{{event.start|date("H:i")}} - {{event.end|date("H:i")}} CEST</span>
+						<span class="place">{{event.place}}</span>
+					</div>
+					<div class="col-xs">&nbsp;</div>
+					<div class="col-md-3 col-xs-12 type"></div>
+				</div>
+				<div class="row">
+					<div class="col-xs-12 event-content">
+						<div class="title">{{event.title}}</div>
+
+						<div class="info">{{event.description|raw}}</div>
+
+						{% if event.speakers %}
+						<div class="speaeker"><b>Speakers:</b> {{event.speakers}} </div>
+						{% endif %}
+
+						{% if event.url %}
+						<div class="join mt-1">
+							<a href="javascript:void(0);" onclick="redirectAndActivate(this, '{{event.url}}', 'SatelliteEvents');" class="btn btn-primary join">Join</a>
 						</div>
 						{% endif %}
 					</div>
