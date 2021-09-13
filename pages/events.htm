@@ -122,7 +122,7 @@ use Pensoft\Calendarcardsextension\Models\Records;
 						{% if event.subsections.count() %}
 						<div class="row between-xs subsections">
 							{% for section in event.subsections %}
-								<div class="col-md-6 col-xs-12 section-item">
+								<div class="col-md-12 col-xs-12 section-item">
 									<div class="title">{{section.title}}</div>
 									{% if section.speakers %}
 									<div class="info section-desc">{{section.description|raw}}</div>
