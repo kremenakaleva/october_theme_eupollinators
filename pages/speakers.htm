@@ -10,13 +10,13 @@ use Pensoft\Calendarcardsextension\Models\Records;
 	function onStart(){
 
 		$day1 = '2021-09-27';
-		$this['day1_speakers'] = Records::speakers($day1);
+		$this['day1_speakers'] = Records::speakers($day1)->sortBy('sort_order');
 		$day2 = '2021-09-28';
-		$this['day2_speakers'] = Records::speakers($day2);
+		$this['day2_speakers'] = Records::speakers($day2)->sortBy('sort_order');
 		$day3 = '2021-09-29';
-		$this['day3_speakers'] = Records::speakers($day3);
+		$this['day3_speakers'] = Records::speakers($day3)->sortBy('sort_order');
 		$day4 = '2021-09-30';
-		$this['day4_speakers'] = Records::speakers($day4);
+		$this['day4_speakers'] = Records::speakers($day4)->sortBy('sort_order');
 
 		if($this->param('slug')){
 			$this['profile'] =  Profiles::where('slug', $this->param('slug'))->first();
@@ -242,7 +242,7 @@ use Pensoft\Calendarcardsextension\Models\Records;
 						</div>
 						{% endif %}
 					</div>
-				</div>>
+				</div>
 				{% endfor %}
 			</div>
 		</div>
