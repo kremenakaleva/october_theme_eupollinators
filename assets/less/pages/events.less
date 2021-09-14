@@ -194,6 +194,9 @@
     max-width: fit-content;
     font-weight: bold;
     margin-bottom: 22px;
+    .breakpoint-small-down({
+    white-space: normal;
+    });
   }
 
 
@@ -230,11 +233,15 @@
     break-inside: avoid;
     .breakpoint-small-down({
       max-width: 100%;
+
       display: block;
     });
 
     .image-container{
       min-width: 283px;
+      .breakpoint-small-down({
+        min-width: unset;
+      });
     }
 
     .keynote{
@@ -298,6 +305,9 @@
     img{
       .breakpoint-small-down({
         margin-bottom: 40px;
+        max-width: 100%;
+        width: 100%;
+        height: auto;
       });
     }
 
@@ -328,6 +338,7 @@
     height: 306px;
     .breakpoint-small-down({
       margin: 0 auto 40px auto;
+      width: 100%;
     });
   }
 
@@ -338,6 +349,9 @@
   .image-container{
     min-width: 250px;
     img{
+      height: auto;
+      width: auto;
+      max-width: 100%;
       .breakpoint-small-down({
         max-width: 100%!important;
         height: auto!important;
