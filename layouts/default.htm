@@ -74,7 +74,7 @@ escape = 1
 	</div>
     {% if this.theme.enable_footer %}
     <!-- Footer -->
-    <footer id="layout-footer">
+    <footer id="layout-footer" class="layout-footer {{this.page.id}}">
         {% partial 'site/footer' 
             enable_social_media=this.theme.social_media 
             enable_facebook=this.theme.facebook

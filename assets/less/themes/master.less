@@ -184,8 +184,18 @@ ol.q {list-style-type: upper-roman; padding-left: 20px;}
       padding-left: 60px!important;
       padding-right: 60px!important;
       white-space: nowrap;
+      .breakpoint-small-down({
+        padding-right: 0!important;
+        padding-left: 0!important;
+      });
     }
   }
+}
+
+.layout-footer.home{
+  .breakpoint-small-down({
+    display: none;
+  });
 }
 
 .about{
@@ -356,6 +366,13 @@ header{
 
 .content_static_list img{
   width: 88%;
+}
+
+img{
+  .breakpoint-small-down({
+    max-width: 100%;
+    height: auto;
+  });
 }
 
 .download-icon{
