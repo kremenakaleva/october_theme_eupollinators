@@ -64,9 +64,16 @@
     padding: 20px 40px;
     white-space: nowrap;
     max-width: fit-content;
+    min-width: 657px;
+    .breakpoint-large-down({
+      white-space: unset;
+      max-width: 100%;
+      min-width: 100%;
+    });
     .breakpoint-small-down({
       white-space: unset;
       max-width: unset;
+      min-width: unset;
     });
 
 
