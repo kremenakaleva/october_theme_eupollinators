@@ -282,6 +282,20 @@ function redirectAndActivate(elem, url, tab_class){
 	location.reload();
 }
 
+function redirectAndActivateSelf(elem, url){
+	$(".tabs a.join").each(function() {
+		this.href = window.location.hash;
+	});
+
+	window.open(url);
+	// location.href = url;
+	location.reload();
+}
+
+function formSuccess( context, data, textStatus, jqXHR){
+	window.open(data.result, '_blank');
+}
+
 function showMore(elem){
 	var target = $(elem).parent().find('.expandable_content');
 	console.log(target);
