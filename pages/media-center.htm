@@ -22,7 +22,7 @@ function onStart(){
 					{% if webinar.vimeo_url %}<p><a href="{{webinar.vimeo_url}}" target="_blank">Link to event in zoom</a></p>{% endif %}
 					<iframe class="preview-webinar" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" frameborder="0" src="{{webinar.youtube_url}}" width="100%" height="425"></iframe>
 					{% if webinar.youtube_url %}<p>&nbsp;</p>
-					<p><a href="{{webinar.youtube_url|replace({'embed/': ''})}}" target="_blank">Watch livestream on Youtube here</a></p>{% endif %}
+					<p><a href="{{webinar.youtube_url|replace({'embed/': 'watch?v='})}}" target="_blank">Watch livestream on Youtube here</a></p>{% endif %}
 				</div>
 			{% endfor %}
 		{% else %}
