@@ -14,7 +14,7 @@ use Pensoft\Library\Models\Library;
 use System\Models\File;
 
 function onStart(){
-			$library = Library::get();
+			$library = Library::orderBy('year', 'asc')->get();
 
 			$this['video_resources'] = $library->filter(function ($item) {
 				return $item->type == 7;
@@ -93,7 +93,7 @@ function onStart(){
 				<div class="row">
 				{% if record.preview %}
 				<div class="col-md-3 col-xs-12">
-					<img src="{{record.preview.getThumb(350 ,250, { mode : 'crop' } )}}" >
+					<img src="{{record.preview.path}}" >
 				</div>
 				{% elseif 'video' in record.file.content_type %}
 					<div class="col-md-3 col-xs-12">
@@ -142,7 +142,7 @@ function onStart(){
 				<div class="row">
 					{% if record.preview %}
 					<div class="col-md-3 col-xs-12">
-						<img src="{{record.preview.getThumb(350 ,250, { mode : 'crop' } )}}" >
+						<img src="{{record.preview.path}}" >
 					</div>
 					{% elseif 'video' in record.file.content_type %}
 					<div class="col-md-3 col-xs-12">
@@ -191,7 +191,7 @@ function onStart(){
 				<div class="row">
 					{% if record.preview %}
 					<div class="col-md-3 col-xs-12">
-						<img src="{{record.preview.getThumb(350 ,250, { mode : 'crop' } )}}" >
+						<img src="{{record.preview.path}}" >
 					</div>
 					{% elseif 'video' in record.file.content_type %}
 					<div class="col-md-3 col-xs-12">
