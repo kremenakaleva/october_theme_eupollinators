@@ -14,7 +14,7 @@ use Pensoft\Library\Models\Library;
 use System\Models\File;
 
 function onStart(){
-			$library = Library::orderBy('year', 'asc')->get();
+			$library = Library::orderBy('year', 'asc')->orderBy('created_at', 'asc')->get();
 
 			$this['video_resources'] = $library->filter(function ($item) {
 				return $item->type == 7;
