@@ -28,6 +28,10 @@ function onStart(){
 				return $item->type == 9;
 			});
 
+			$this['pledges_resources'] = $library->filter(function ($item) {
+				return $item->type == 10;
+			});
+
 
 			if(get('download')){
 				$file = File::find((int)get('download'));
@@ -76,6 +80,12 @@ function onStart(){
 			<div class="resource_tab mr-1">
 				<a href="#other" title="Other" class="btn btn-primary other">
 					Other
+				</a>
+			</div>
+
+			<div class="resource_tab mr-1">
+				<a href="#pledges" title="Pledges for pollinators" class="btn btn-primary pledges" style="white-space: nowrap; min-width: fit-content;">
+					Pledges for pollinators
 				</a>
 			</div>
 
@@ -185,6 +195,56 @@ function onStart(){
 
 		<div class="row" id="other">
 			{% for record in other_resources %}
+			<div class="library-item col-xs-12 mb-2">
+				<div class="row">
+					{% if record.preview %}
+					<div class="col-md-3 col-xs-12">
+						<img src="{{record.preview.path}}" >
+					</div>
+					{% elseif 'video' in record.file.content_type %}
+					<div class="col-md-3 col-xs-12">
+						<video  title="{{ record.title }}" controls="" width="100%"><source src="{{record.file.path}}#t=3" type="video/mp4"></video>
+					</div>
+					{% elseif record.doi %}
+					<div class="col-md-3 col-xs-12">
+						<iframe width="100%" src="{{record.doi}}" title="{{ record.title }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+					</div>
+					{% endif %}
+
+					<div class="col-xs pl-1">
+						<div class="news-title">
+							<h3 class="card-title">{{ record.title }}</h3>
+						</div>
+						<div class="body">
+							{% partial __SELF__ ~ "::libraries-content" label="Presenter:" value=record.authors %}
+							{% partial __SELF__ ~ "::libraries-content" label="Presentation title:" value=record.project_title %}
+							{% partial __SELF__ ~ "::libraries-content" label="Date:" value=record.date_attr %}
+						</div>
+						{%if record.file %}
+						<div class="col-xs-12 text-center">
+							<div class="row middle-xs">
+								<div class="col-xs-12">
+									<div class="d-flex flex-column justify-content-start flex-lg-row mt-1 d-flex align-items-start">
+										<a href="javascript:void(0);" onclick="redirectAndActivateSelf(this, '{{ ''| page }}?{{queries}}&download={{record.file.id}}&file_name={{record.file.file_name|replace({' ': '_'})}}');" class="btn btn-primary no-margin"><i class="pr normal p-download"></i>Download ({{(record.file.file_size / 1024 / 1024 )|round(2)}} MB)</a>
+										<!--<a href="{{ ''| page }}?{{queries}}&download={{record.file.id}}&file_name={{record.file.file_name|replace({' ': '_'})}}" class="btn btn-primary no-margin join"><i class="pr normal p-download"></i>Download ({{(record.file.file_size / 1024 / 1024 )|round(2)}} MB)</a>-->
+
+									</div>
+								</div>
+							</div>
+						</div>
+						{%endif%}
+					</div>
+
+
+				</div>
+			</div>
+			{% endfor %}
+		</div>
+
+
+
+		<div class="row" id="pledges">
+			{% for record in pledges_resources %}
 			<div class="library-item col-xs-12 mb-2">
 				<div class="row">
 					{% if record.preview %}
