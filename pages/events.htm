@@ -52,7 +52,6 @@ use Pensoft\Calendarcardsextension\Models\Records;
 		});
 
 	}
-
 ?>
 ==
 <div class="container">
@@ -74,11 +73,11 @@ use Pensoft\Calendarcardsextension\Models\Records;
 				<a href="#september29" title="Day 3" class="btn btn-primary day3">
 					Day 3
 				</a>
-			</div>
+				</div>
 			<div class="col-md-1 col-xs-12">
 				<a href="#september30" title="Day 4" class="btn btn-primary day4">
 					Day 4
-				</a>
+		        </a>
 			</div>
 			<div class="col-md-2 col-xs-12">
 				<a href="#SatelliteEvents" title="Satellite events" class="btn btn-primary satellite_events">
@@ -115,7 +114,7 @@ use Pensoft\Calendarcardsextension\Models\Records;
 
 						{% if event.url %}
 						<div class="join mt-1">
-							<a href="javascript:void(0);" onclick="redirectAndActivate(this, '{{event.url}}', 'day1');" class="btn btn-primary join">Join</a>
+							<a href="javascript:void(0);" onclick="redirectAndActivate(this, '{{event.url}}', 'day1');" class="btn btn-primary join">Watch</a>
 						</div>
 						{% endif %}
 
@@ -132,7 +131,7 @@ use Pensoft\Calendarcardsextension\Models\Records;
 
 									{% if section.link %}
 									<div class="join mt-1">
-										<a href="javascript:void(0);" onclick="redirectAndActivate(this, '{{section.link}}', 'day1');" class="btn btn-primary join">Join</a>
+										<a href="javascript:void(0);" onclick="redirectAndActivate(this, '{{section.link}}', 'day1');" class="btn btn-primary join">Watch</a>
 									</div>
 									{% endif %}
 								</div>
@@ -171,7 +170,7 @@ use Pensoft\Calendarcardsextension\Models\Records;
 						{% endif %}
 						{% if event.url %}
 						<div class="join mt-1">
-							<a href="javascript:void(0);" onclick="redirectAndActivate(this, '{{event.url}}', 'day2');" class="btn btn-primary join">Join</a>
+							<a href="javascript:void(0);" onclick="redirectAndActivate(this, '{{event.url}}', 'day2');" class="btn btn-primary join">Watch</a>
 						</div>
 						{% endif %}
 						{% if event.subsections.count() %}
@@ -187,7 +186,7 @@ use Pensoft\Calendarcardsextension\Models\Records;
 
 									{% if section.link %}
 									<div class="join mt-1">
-										<a href="javascript:void(0);" onclick="redirectAndActivate(this, '{{section.link}}', 'day1');" class="btn btn-primary join">Join</a>
+										<a href="javascript:void(0);" onclick="redirectAndActivate(this, '{{section.link}}', 'day1');" class="btn btn-primary join">Watch</a>
 									</div>
 									{% endif %}
 								</div>
@@ -225,7 +224,7 @@ use Pensoft\Calendarcardsextension\Models\Records;
 						{% endif %}
 						{% if event.url %}
 						<div class="join mt-1">
-							<a href="javascript:void(0);" onclick="redirectAndActivate(this, '{{event.url}}', 'day3');" class="btn btn-primary join">Join</a>
+							<a href="javascript:void(0);" onclick="redirectAndActivate(this, '{{event.url}}', 'day3');" class="btn btn-primary join">Watch</a>
 						</div>
 						{% endif %}
 						{% if event.subsections.count() %}
@@ -241,7 +240,7 @@ use Pensoft\Calendarcardsextension\Models\Records;
 
 									{% if section.link %}
 									<div class="join mt-1">
-										<a href="javascript:void(0);" onclick="redirectAndActivate(this, '{{section.link}}', 'day1');" class="btn btn-primary join">Join</a>
+										<a href="javascript:void(0);" onclick="redirectAndActivate(this, '{{section.link}}', 'day1');" class="btn btn-primary join">Watch</a>
 									</div>
 									{% endif %}
 								</div>
@@ -280,7 +279,7 @@ use Pensoft\Calendarcardsextension\Models\Records;
 
 						{% if event.url %}
 						<div class="join mt-1">
-							<a href="javascript:void(0);" onclick="redirectAndActivate(this, '{{event.url}}', 'day4');" class="btn btn-primary join">Join</a>
+							<a href="javascript:void(0);" onclick="redirectAndActivate(this, '{{event.url}}', 'day4');" class="btn btn-primary join">Watch</a>
 						</div>
 						{% endif %}
 						{% if event.subsections.count() %}
@@ -296,7 +295,7 @@ use Pensoft\Calendarcardsextension\Models\Records;
 
 									{% if section.link %}
 									<div class="join mt-1">
-										<a href="javascript:void(0);" onclick="redirectAndActivate(this, '{{section.link}}', 'day1');" class="btn btn-primary join">Join</a>
+										<a href="javascript:void(0);" onclick="redirectAndActivate(this, '{{section.link}}', 'day1');" class="btn btn-primary join">Watch</a>
 									</div>
 									{% endif %}
 								</div>
@@ -335,7 +334,7 @@ use Pensoft\Calendarcardsextension\Models\Records;
 
 						{% if event.url %}
 						<div class="join mt-1">
-							<a href="javascript:void(0);" onclick="redirectAndActivate(this, '{{event.url}}', 'SatelliteEvents');" class="btn btn-primary join">Join</a>
+							<a href="javascript:void(0);" onclick="redirectAndActivate(this, '{{event.url}}', 'SatelliteEvents');" class="btn btn-primary join">Watch</a>
 						</div>
 						{% endif %}
 					</div>

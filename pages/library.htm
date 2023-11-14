@@ -8,6 +8,12 @@ robot_follow = "follow"
 [LibraryPage]
 templates = "template4"
 no_records_message = "No records found"
+
+[jumbotron]
+jumbotron = "quotes-meps"
+background = "transperant"
+templates = "template1"
+description_limit = 0
 ==
 <?php
 use Pensoft\Library\Models\Library;
@@ -289,6 +295,7 @@ function onStart(){
 				</div>
 			</div>
 			{% endfor %}
+			{% component 'jumbotron' %}
 		</div>
 
 
